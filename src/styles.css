@@ -34,6 +34,7 @@
   --color-cream: var(--cream);
   --color-forest: var(--forest);
   --color-gold: var(--gold);
+  --color-indigo: var(--indigo);
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
@@ -65,6 +66,8 @@
   --cream: oklch(0.96 0.02 85);
   --forest: oklch(0.35 0.08 145);
   --gold: oklch(0.75 0.13 80);
+  --indigo: oklch(0.32 0.09 262);
+
 }
 
 .dark {
@@ -109,6 +112,7 @@
   background-clip: text;
   color: transparent;
 }
+
 
 @layer base {
   * { border-color: var(--color-border); }

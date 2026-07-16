@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader } from "@/components/site/SectionHeader";
+import { PageHero } from "@/components/site/PageHero";
 import { galleryImages } from "@/data/mock";
+import heroGallery from "@/assets/hero/hero-galeri.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({ meta: [{ title: "Galeri — Sosromenduran" }, { name: "description", content: "Galeri foto wisata, budaya, dan kuliner Sosromenduran." }] }),
@@ -14,9 +15,13 @@ function Gallery() {
   const [open, setOpen] = useState<string | null>(null);
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-6">
-        <SectionHeader eyebrow="Galeri" title="Momen Sosromenduran" subtitle="Wisata, budaya, kuliner, dan aktivitas warga dalam satu bingkai." />
-      </section>
+  <PageHero
+    eyebrow="Galeri"
+    title="Momen Sosromenduran"
+    subtitle="Wisata, budaya, kuliner, dan aktivitas warga dalam satu bingkai."
+    image={heroGallery}
+  />
+  <section className="mx-auto max-w-7xl px-4 md:px-8 pt-10 pb-20 grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></section>
       <section className="mx-auto max-w-7xl px-4 md:px-8 pb-20 grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {galleryImages.map((img, i) => (
           <button key={i} onClick={() => setOpen(img)} className={`overflow-hidden rounded-2xl group ${i % 5 === 0 ? "row-span-2 aspect-square md:aspect-auto" : "aspect-square"}`}>

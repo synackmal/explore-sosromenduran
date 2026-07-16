@@ -31,7 +31,7 @@ export function Footer() {
             <li><Link to="/about">Tentang</Link></li>
             <li><Link to="/events">Event</Link></li>
             <li><Link to="/gallery">Galeri</Link></li>
-            <li><Link to="/contact">Kontak</Link></li>
+            <li><Link to="/contact">Chat</Link></li>
           </ul>
         </div>
         <div>

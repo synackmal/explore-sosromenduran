@@ -25,7 +25,7 @@ function Home() {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImg} alt="Sosromenduran" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-background" />
@@ -36,18 +36,18 @@ function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl"
+            className="max-w-5xl mx-auto text-center"
           >
             <Badge className="mb-5 bg-white/15 text-white border-white/30 backdrop-blur">
-              <Sparkles className="h-3 w-3 mr-1" /> Kelurahan Sosromenduran, Yogyakarta
+              Kalurahan Sosromenduran, Yogyakarta
             </Badge>
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05]">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] md:whitespace-nowrap">
               Bergandeng <span className="text-gradient-warm">Tengen</span>
             </h1>
-            <p className="mt-5 text-lg md:text-xl text-white/85 max-w-xl">
-              Discover the Hidden Gems of Sosromenduran — jantung Malioboro yang menyimpan kampung heritage, kuliner legendaris, dan seni batik warga.
+            <p className="mt-5 text-lg md:text-4xl text-white/85 mx-auto md:whitespace-nowrap w-fit italic">
+              Discover the Hidden Gems of Sosromenduran
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <Button asChild size="lg" className="rounded-full">
                 <Link to="/kampung">Jelajahi Kampung <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
