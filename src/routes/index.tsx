@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { kampungs, umkms, culinaries, events, stats } from "@/data/mock";
 import heroImg from "@/assets/hero-sosromenduran.jpg";
+import batikCircle1 from "@/assets/decor/batik-circle-1.png";
+import batikCircle2 from "@/assets/decor/batik-circle-2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,6 +32,18 @@ function Home() {
           <img src={heroImg} alt="Sosromenduran" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-background" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+          <img
+  src={batikCircle1}
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute -top-54 -left-34 h-80 w-80 md:h-[28rem] md:w-[28rem] lg:h-[34rem] lg:w-[34rem] opacity-50 motion-safe:animate-[spinSlow_60s_linear_infinite]"
+/>
+<img
+  src={batikCircle2}
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute -bottom-58 -right-38 h-80 w-80 md:h-[28rem] md:w-[28rem] lg:h-[34rem] lg:w-[34rem] opacity-70 motion-safe:animate-[spinSlowReverse_80s_linear_infinite]"
+/>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 md:px-8 py-24 text-white">
           <motion.div
