@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { getChatResponse } from "@/lib/chatbotService";
 
 type Msg = { role: "user" | "bot"; text: string };
 
@@ -26,22 +27,23 @@ export function Chatbot() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [msgs, typing]);
 
-  const send = (text: string) => {
-    if (!text.trim()) return;
-    setMsgs((m) => [...m, { role: "user", text }]);
-    setInput("");
-    setTyping(true);
-    setTimeout(() => {
-      setTyping(false);
-      setMsgs((m) => [
-        ...m,
-        {
-          role: "bot",
-          text: "Terima kasih! Fitur AI akan segera terhubung. Sementara ini Anda bisa jelajahi halaman Kampung, Kuliner, dan Peta untuk info lengkapnya.",
-        },
-      ]);
-    }, 1200);
-  };
+  const send = async (text: string) => {
+  if (!text.trim()) return;
+  const newMsgs = [...msgs, { role: "user" as const, text }];
+  setMsgs(newMsgs);
+  setInput("");
+  setTyping(true);
+
+  // convert histori local (role: user/bot) ke format yang API butuhkan (role: user/assistant)
+  const history = newMsgs.map((m) => ({
+    role: m.role === "bot" ? ("assistant" as const) : ("user" as const),
+    content: m.text,
+  }));
+
+  const reply = await getChatResponse(history);
+  setTyping(false);
+  setMsgs((m) => [...m, { role: "bot", text: reply }]);
+};
 
   return (
     <>
