@@ -6,6 +6,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import heroContact from "@/assets/hero/hero-contact.jpg";
+import { getChatResponse } from "@/lib/chatbotService";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -39,22 +40,23 @@ function ChatPage() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [msgs, typing]);
 
-  const send = (text: string) => {
-    if (!text.trim()) return;
-    setMsgs((m) => [...m, { role: "user", text }]);
-    setInput("");
-    setTyping(true);
-    setTimeout(() => {
-      setTyping(false);
-      setMsgs((m) => [
-        ...m,
-        {
-          role: "bot",
-          text: "Terima kasih! Fitur AI akan segera terhubung. Sementara ini Anda bisa jelajahi halaman Kampung, Kuliner, dan Peta untuk info lengkapnya.",
-        },
-      ]);
-    }, 1200);
-  };
+  const send = async (text: string) => {
+  if (!text.trim()) return;
+  const newMsgs = [...msgs, { role: "user" as const, text }];
+  setMsgs(newMsgs);
+  setInput("");
+  setTyping(true);
+
+  // convert histori local (role: user/bot) ke format yang API butuhkan (role: user/assistant)
+  const history = newMsgs.map((m) => ({
+    role: m.role === "bot" ? ("assistant" as const) : ("user" as const),
+    content: m.text,
+  }));
+
+  const reply = await getChatResponse(history);
+  setTyping(false);
+  setMsgs((m) => [...m, { role: "bot", text: reply }]);
+};
 
   return (
     <SiteLayout>
