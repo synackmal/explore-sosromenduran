@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search, MapPin, Clock, Phone } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader } from "@/components/site/SectionHeader";
+import { PageHero } from "@/components/site/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { umkms } from "@/data/mock";
+import heroUMKM from "@/assets/hero/hero-umkm.jpg";
 
 export const Route = createFileRoute("/umkm")({
   head: () => ({ meta: [{ title: "Direktori UMKM — Sosromenduran" }, { name: "description", content: "Direktori UMKM warga Kelurahan Sosromenduran." }] }),
@@ -29,29 +30,34 @@ function UMKMDirectory() {
 
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-6">
-        <SectionHeader eyebrow="Direktori UMKM" title="Ekonomi Kreatif Warga" subtitle="Temukan produk lokal, kerajinan, dan jasa dari UMKM Sosromenduran." />
-        <div className="grid gap-3 md:grid-cols-[1fr_200px_200px] mb-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari UMKM..." className="pl-9" />
-          </div>
-          <Select value={cat} onValueChange={setCat}>
-            <SelectTrigger><SelectValue placeholder="Kategori" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Semua Kategori</SelectItem>
-              {categories.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-            </SelectContent>
-          </Select>
-          <Select value={sort} onValueChange={setSort}>
-            <SelectTrigger><SelectValue placeholder="Urutkan" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="name">Nama (A-Z)</SelectItem>
-              <SelectItem value="category">Kategori</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </section>
+  <PageHero
+    eyebrow="Direktori UMKM"
+    title="Ekonomi Kreatif Warga"
+    subtitle="Temukan produk lokal, kerajinan, dan jasa dari UMKM Sosromenduran."
+    image={heroUMKM}
+  />
+  <section className="mx-auto max-w-7xl px-4 md:px-8 pt-10 pb-6">
+    <div className="grid gap-3 md:grid-cols-[1fr_200px_200px] mb-8">
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari UMKM..." className="pl-9" />
+      </div>
+      <Select value={cat} onValueChange={setCat}>
+        <SelectTrigger><SelectValue placeholder="Kategori" /></SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">Semua Kategori</SelectItem>
+          {categories.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+        </SelectContent>
+      </Select>
+      <Select value={sort} onValueChange={setSort}>
+        <SelectTrigger><SelectValue placeholder="Urutkan" /></SelectTrigger>
+        <SelectContent>
+          <SelectItem value="name">Nama (A-Z)</SelectItem>
+          <SelectItem value="category">Kategori</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </section>
       <section className="mx-auto max-w-7xl px-4 md:px-8 pb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((u) => (
           <Card key={u.slug} className="overflow-hidden border-border/60 group hover:shadow-xl transition-all">

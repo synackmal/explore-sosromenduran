@@ -2,10 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { MapPin, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader } from "@/components/site/SectionHeader";
+import { PageHero } from "@/components/site/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { kampungs } from "@/data/mock";
+import heroKampung from "@/assets/hero/hero-kampung.jpg";
 
 export const Route = createFileRoute("/kampung/")({
   head: () => ({
@@ -20,10 +21,8 @@ export const Route = createFileRoute("/kampung/")({
 function KampungIndex() {
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-6">
-        <SectionHeader eyebrow="7 Kampung Heritage" title="Kampung Sosromenduran" subtitle="Setiap kampung adalah bab cerita — dari mural, kuliner, hingga seni batik warga." />
-      </section>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <PageHero eyebrow="7 Kampung Heritage" title="Kampung Sosromenduran" subtitle="Setiap kampung adalah bab cerita — dari mural, kuliner, hingga seni batik warga." image={heroKampung} />
+      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {kampungs.map((k, i) => (
           <motion.div key={k.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
             <Link to="/kampung/$slug" params={{ slug: k.slug }}>

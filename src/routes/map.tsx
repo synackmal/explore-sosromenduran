@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { MapPin, Layers } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader } from "@/components/site/SectionHeader";
+import { PageHero } from "@/components/site/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import heroMAP from "@/assets/hero/hero-peta.jpg";
+
 
 export const Route = createFileRoute("/map")({
   head: () => ({ meta: [{ title: "Peta Wisata Interaktif — Sosromenduran" }, { name: "description", content: "Peta wisata interaktif Kelurahan Sosromenduran berbasis ArcGIS." }] }),
@@ -22,9 +24,13 @@ function MapPage() {
 
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-6">
-        <SectionHeader eyebrow="Interactive Map" title="Peta Wisata Sosromenduran" subtitle="Peta interaktif ArcGIS Online — jelajahi kampung, kuliner, UMKM, hingga fasilitas publik." />
-      </section>
+  <PageHero
+    eyebrow="Interactive Map"
+    title="Peta Wisata Sosromenduran"
+    subtitle="Peta interaktif ArcGIS Online — jelajahi kampung, kuliner, UMKM, hingga fasilitas publik."
+    image={heroMAP}
+  />
+  <section className="mx-auto max-w-7xl px-4 md:px-8 pt-10 pb-20 grid gap-6 lg:grid-cols-[280px_1fr]"></section>
       <section className="mx-auto max-w-7xl px-4 md:px-8 pb-20 grid gap-6 lg:grid-cols-[280px_1fr]">
         <Card className="border-border/60 h-fit lg:sticky lg:top-24">
           <CardContent className="p-5">

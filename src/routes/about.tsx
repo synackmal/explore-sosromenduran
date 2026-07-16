@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Landmark, Compass, Heart, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader } from "@/components/site/SectionHeader";
+import { PageHero } from "@/components/site/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
+import type { ComponentType, ReactNode } from "react";
+import heroAbout from "@/assets/hero/hero-about.jpg";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({ meta: [{ title: "Tentang Sosromenduran" }, { name: "description", content: "Sejarah, visi, misi, dan potensi wisata Kelurahan Sosromenduran." }] }),
@@ -12,11 +15,9 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-6">
-        <SectionHeader eyebrow="Tentang Kami" title="Kelurahan Sosromenduran" subtitle="Kelurahan bersejarah di jantung Yogyakarta yang berdampingan langsung dengan kawasan Malioboro." />
-      </section>
+      <PageHero eyebrow="Tentang Kami" title="Kelurahan Sosromenduran" subtitle="Kelurahan bersejarah di jantung Yogyakarta yang berdampingan langsung dengan kawasan Malioboro." image={heroAbout} />
 
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pb-10 space-y-10">
+      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-20 space-y-10">
         <Block icon={Landmark} title="Sejarah">
           Sosromenduran adalah kelurahan bersejarah di Kecamatan Gedongtengen, Kota Yogyakarta. Nama-nama kampungnya seperti Sosrowijayan, Jogonegaran, dan Pajeksan berakar pada peran abdi dalem Keraton Yogyakarta pada masanya. Kelurahan ini tumbuh bersama kawasan Malioboro sejak abad ke-19.
         </Block>
@@ -39,7 +40,7 @@ function About() {
   );
 }
 
-function Block({ icon: Icon, title, children }: { icon: React.ComponentType<{ className?: string }>; title: string; children: React.ReactNode }) {
+function Block({ icon: Icon, title, children }: { icon: ComponentType<{ className?: string }>; title: string; children: React.ReactNode }) {
   return (
     <Card className="border-border/60">
       <CardContent className="p-8 grid gap-4 md:grid-cols-[80px_1fr]">

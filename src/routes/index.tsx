@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { kampungs, umkms, culinaries, events, stats } from "@/data/mock";
 import heroImg from "@/assets/hero-sosromenduran.jpg";
+import batikCircle1 from "@/assets/decor/batik-circle-1.png";
+import batikCircle2 from "@/assets/decor/batik-circle-2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,29 +27,41 @@ function Home() {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImg} alt="Sosromenduran" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-background" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+          <img
+  src={batikCircle1}
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute -top-54 -left-34 h-80 w-80 md:h-[28rem] md:w-[28rem] lg:h-[34rem] lg:w-[34rem] opacity-50 motion-safe:animate-[spinSlow_60s_linear_infinite]"
+/>
+<img
+  src={batikCircle2}
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute -bottom-58 -right-38 h-80 w-80 md:h-[28rem] md:w-[28rem] lg:h-[34rem] lg:w-[34rem] opacity-70 motion-safe:animate-[spinSlowReverse_80s_linear_infinite]"
+/>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 md:px-8 py-24 text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl"
+            className="max-w-5xl mx-auto text-center"
           >
             <Badge className="mb-5 bg-white/15 text-white border-white/30 backdrop-blur">
-              <Sparkles className="h-3 w-3 mr-1" /> Kelurahan Sosromenduran, Yogyakarta
+              Kalurahan Sosromenduran, Yogyakarta
             </Badge>
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05]">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] md:whitespace-nowrap">
               Bergandeng <span className="text-gradient-warm">Tengen</span>
             </h1>
-            <p className="mt-5 text-lg md:text-xl text-white/85 max-w-xl">
-              Discover the Hidden Gems of Sosromenduran — jantung Malioboro yang menyimpan kampung heritage, kuliner legendaris, dan seni batik warga.
+            <p className="mt-5 text-lg md:text-4xl text-white/85 mx-auto md:whitespace-nowrap w-fit italic">
+              Discover the Hidden Gems of Sosromenduran
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <Button asChild size="lg" className="rounded-full">
                 <Link to="/kampung">Jelajahi Kampung <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>

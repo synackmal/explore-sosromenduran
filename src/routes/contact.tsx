@@ -1,53 +1,129 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { PageHero } from "@/components/site/PageHero";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import heroContact from "@/assets/hero/hero-contact.jpg";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title: "Kontak — Sosromenduran" }, { name: "description", content: "Hubungi Kelurahan Sosromenduran, Yogyakarta." }] }),
-  component: Contact,
+  head: () => ({
+    meta: [
+      { title: "Chat — Sosromenduran" },
+      { name: "description", content: "Ngobrol dengan Tengen, asisten wisata Sosromenduran." },
+    ],
+  }),
+  component: ChatPage,
 });
 
-function Contact() {
+type Msg = { role: "user" | "bot"; text: string };
+
+const SUGGESTIONS = [
+  "Wisata apa saja di Sosromenduran?",
+  "Rekomendasi kuliner khas?",
+  "Rekomendasi oleh-oleh?",
+  "Dimana parkir terdekat?",
+  "Event budaya terdekat?",
+];
+
+function ChatPage() {
+  const [typing, setTyping] = useState(false);
+  const [input, setInput] = useState("");
+  const [msgs, setMsgs] = useState<Msg[]>([
+    { role: "bot", text: "Halo! Saya Tengen, asisten wisata Sosromenduran. Ada yang bisa saya bantu?" },
+  ]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+  }, [msgs, typing]);
+
+  const send = (text: string) => {
+    if (!text.trim()) return;
+    setMsgs((m) => [...m, { role: "user", text }]);
+    setInput("");
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      setMsgs((m) => [
+        ...m,
+        {
+          role: "bot",
+          text: "Terima kasih! Fitur AI akan segera terhubung. Sementara ini Anda bisa jelajahi halaman Kampung, Kuliner, dan Peta untuk info lengkapnya.",
+        },
+      ]);
+    }, 1200);
+  };
+
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-6">
-        <SectionHeader eyebrow="Kontak" title="Hubungi Kami" subtitle="Silakan sampaikan pertanyaan, saran, atau kolaborasi kepada tim Sosromenduran." />
-      </section>
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pb-20 grid gap-8 lg:grid-cols-[1fr_400px]">
-        <Card className="border-border/60">
-          <CardContent className="p-8">
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid gap-4 md:grid-cols-2">
-                <div><Label>Nama</Label><Input className="mt-1" placeholder="Nama lengkap" /></div>
-                <div><Label>Email</Label><Input className="mt-1" type="email" placeholder="you@email.com" /></div>
+      <PageHero
+        eyebrow="Ngobrol Yuk"
+        title="Chat dengan Tengen"
+        subtitle="Asisten wisata Sosromenduran siap bantu jawab pertanyaan Anda."
+        image={heroContact}
+      />
+      <section className="mx-auto max-w-3xl px-4 md:px-8 pt-10 pb-20">
+        <Card className="border-border/60 flex flex-col h-[70vh] overflow-hidden">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-3">
+            {msgs.map((m, i) => (
+              <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div
+                  className={`max-w-[80%] rounded-2xl px-3 py-2 text-sm ${
+                    m.role === "user"
+                      ? "bg-primary text-primary-foreground rounded-br-sm"
+                      : "bg-muted text-foreground rounded-bl-sm"
+                  }`}
+                >
+                  {m.text}
+                </div>
               </div>
-              <div><Label>Subjek</Label><Input className="mt-1" placeholder="Topik pesan" /></div>
-              <div><Label>Pesan</Label><Textarea className="mt-1" rows={6} placeholder="Tulis pesan Anda..." /></div>
-              <Button type="submit" className="rounded-full">Kirim Pesan <Send className="ml-2 h-4 w-4" /></Button>
-            </form>
-          </CardContent>
+            ))}
+            {typing && (
+              <div className="flex justify-start">
+                <div className="bg-muted rounded-2xl px-3 py-2 rounded-bl-sm">
+                  <div className="flex gap-1">
+                    <span className="h-2 w-2 rounded-full bg-foreground/40 animate-bounce [animation-delay:-.3s]" />
+                    <span className="h-2 w-2 rounded-full bg-foreground/40 animate-bounce [animation-delay:-.15s]" />
+                    <span className="h-2 w-2 rounded-full bg-foreground/40 animate-bounce" />
+                  </div>
+                </div>
+              </div>
+            )}
+            {msgs.length <= 1 && (
+              <div className="pt-2 space-y-2">
+                <div className="text-xs text-muted-foreground">Pertanyaan populer:</div>
+                {SUGGESTIONS.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => send(s)}
+                    className="w-full text-left text-xs px-3 py-2 rounded-lg border border-border hover:bg-muted transition-colors"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              send(input);
+            }}
+            className="p-3 border-t border-border/60 flex gap-2"
+          >
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Tanya apa saja..."
+              className="flex-1 rounded-full bg-muted px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
+            />
+            <Button type="submit" size="icon" className="rounded-full shrink-0">
+              <Send className="h-4 w-4" />
+            </Button>
+          </form>
         </Card>
-
-        <div className="space-y-6">
-          <Card className="border-border/60">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex gap-3"><MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" /><div><div className="font-semibold">Kantor Kelurahan</div><div className="text-sm text-muted-foreground">Jl. Sosrowijayan No. 1, Yogyakarta 55271</div></div></div>
-              <div className="flex gap-3"><Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" /><div><div className="font-semibold">Telepon</div><div className="text-sm text-muted-foreground">+62 274 512 345</div></div></div>
-              <div className="flex gap-3"><Mail className="h-5 w-5 text-primary shrink-0 mt-0.5" /><div><div className="font-semibold">Email</div><div className="text-sm text-muted-foreground">info@sosromenduran.id</div></div></div>
-            </CardContent>
-          </Card>
-          <Card className="border-border/60 overflow-hidden">
-            <div className="aspect-video bg-gradient-to-br from-primary/15 to-accent/15 batik-pattern grid place-items-center">
-              <MapPin className="h-10 w-10 text-primary" />
-            </div>
-          </Card>
-        </div>
       </section>
     </SiteLayout>
   );
