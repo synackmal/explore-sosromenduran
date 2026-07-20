@@ -21,7 +21,6 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-cream/70">
             <li><Link to="/kampung">Kampung</Link></li>
             <li><Link to="/umkm">UMKM</Link></li>
-            <li><Link to="/culinary">Kuliner</Link></li>
             <li><Link to="/map">Peta Wisata</Link></li>
           </ul>
         </div>

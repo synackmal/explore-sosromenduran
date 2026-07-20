@@ -15,7 +15,6 @@ import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EventsRouteImport } from './routes/events'
-import { Route as CulinaryRouteImport } from './routes/culinary'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -52,11 +51,6 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CulinaryRoute = CulinaryRouteImport.update({
-  id: '/culinary',
-  path: '/culinary',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -87,7 +81,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/culinary': typeof CulinaryRoute
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
@@ -101,7 +94,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/culinary': typeof CulinaryRoute
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
@@ -116,7 +108,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/culinary': typeof CulinaryRoute
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
@@ -132,7 +123,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/culinary'
     | '/events'
     | '/gallery'
     | '/map'
@@ -146,7 +136,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/culinary'
     | '/events'
     | '/gallery'
     | '/map'
@@ -160,7 +149,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/culinary'
     | '/events'
     | '/gallery'
     | '/map'
@@ -175,7 +163,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  CulinaryRoute: typeof CulinaryRoute
   EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
   MapRoute: typeof MapRoute
@@ -230,13 +217,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/culinary': {
-      id: '/culinary'
-      path: '/culinary'
-      fullPath: '/culinary'
-      preLoaderRoute: typeof CulinaryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -279,7 +259,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  CulinaryRoute: CulinaryRoute,
   EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
   MapRoute: MapRoute,
