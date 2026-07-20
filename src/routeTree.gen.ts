@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UmkmRouteImport } from './routes/umkm'
+import { Route as ProfilTimRouteImport } from './routes/profil-tim'
+import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EventsRouteImport } from './routes/events'
@@ -23,6 +25,16 @@ import { Route as KampungSlugRouteImport } from './routes/kampung.$slug'
 const UmkmRoute = UmkmRouteImport.update({
   id: '/umkm',
   path: '/umkm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilTimRoute = ProfilTimRouteImport.update({
+  id: '/profil-tim',
+  path: '/profil-tim',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilRoute = ProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapRoute = MapRouteImport.update({
@@ -79,6 +91,8 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
+  '/profil': typeof ProfilRoute
+  '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
@@ -91,6 +105,8 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
+  '/profil': typeof ProfilRoute
+  '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung': typeof KampungIndexRoute
@@ -104,6 +120,8 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
+  '/profil': typeof ProfilRoute
+  '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
@@ -118,6 +136,8 @@ export interface FileRouteTypes {
     | '/events'
     | '/gallery'
     | '/map'
+    | '/profil'
+    | '/profil-tim'
     | '/umkm'
     | '/kampung/$slug'
     | '/kampung/'
@@ -130,6 +150,8 @@ export interface FileRouteTypes {
     | '/events'
     | '/gallery'
     | '/map'
+    | '/profil'
+    | '/profil-tim'
     | '/umkm'
     | '/kampung/$slug'
     | '/kampung'
@@ -142,6 +164,8 @@ export interface FileRouteTypes {
     | '/events'
     | '/gallery'
     | '/map'
+    | '/profil'
+    | '/profil-tim'
     | '/umkm'
     | '/kampung/$slug'
     | '/kampung/'
@@ -155,6 +179,8 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
   MapRoute: typeof MapRoute
+  ProfilRoute: typeof ProfilRoute
+  ProfilTimRoute: typeof ProfilTimRoute
   UmkmRoute: typeof UmkmRoute
   KampungSlugRoute: typeof KampungSlugRoute
   KampungIndexRoute: typeof KampungIndexRoute
@@ -167,6 +193,20 @@ declare module '@tanstack/react-router' {
       path: '/umkm'
       fullPath: '/umkm'
       preLoaderRoute: typeof UmkmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil-tim': {
+      id: '/profil-tim'
+      path: '/profil-tim'
+      fullPath: '/profil-tim'
+      preLoaderRoute: typeof ProfilTimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil': {
+      id: '/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ProfilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/map': {
@@ -243,6 +283,8 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
   MapRoute: MapRoute,
+  ProfilRoute: ProfilRoute,
+  ProfilTimRoute: ProfilTimRoute,
   UmkmRoute: UmkmRoute,
   KampungSlugRoute: KampungSlugRoute,
   KampungIndexRoute: KampungIndexRoute,
