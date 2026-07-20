@@ -35,7 +35,7 @@ export function Chatbot() {
   setTyping(true);
 
   // convert histori local (role: user/bot) ke format yang API butuhkan (role: user/assistant)
-  const history = newMsgs.map((m) => ({
+  const history = newMsgs.slice(-6).map((m) => ({
     role: m.role === "bot" ? ("assistant" as const) : ("user" as const),
     content: m.text,
   }));

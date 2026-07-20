@@ -1,47 +1,27 @@
-import { kampungs, umkms, culinaries, events, stats } from "@/data/mock";
+import { kampungs, umkms, culinaries, events } from "@/data/mock";
 
 const apiKey = import.meta.env.VITE_GROQ_API_KEY;
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
 function buildKnowledgeBase() {
-  const kampungSummary = kampungs.map((k) => ({
-    nama: k.name,
-    ringkasan: k.short,
-    sejarah: k.history,
-    keunikan: k.uniqueness,
-    atraksi: k.attractions,
-    aktivitasBudaya: k.culturalActivities,
-  }));
+  const kampungText = kampungs
+    .map((k) => `- ${k.name}: ${k.short} Keunikan: ${k.uniqueness}`)
+    .join("\n");
 
-  const umkmSummary = umkms.map((u) => ({
-    nama: u.name,
-    kategori: u.category,
-    deskripsi: u.description,
-    alamat: u.address,
-    jamBuka: u.hours,
-    kontak: u.contact,
-    produk: u.products,
-  }));
+  const umkmText = umkms
+    .map((u) => `- ${u.name} (${u.category}, ${u.address}, buka ${u.hours}): ${u.description}`)
+    .join("\n");
 
-  const culinarySummary = culinaries.map((c) => ({
-    nama: c.name,
-    kategori: c.category,
-    menuAndalan: c.signature,
-    kisaranHarga: c.priceRange,
-    deskripsi: c.description,
-    alamat: c.address,
-    jamBuka: c.hours,
-  }));
+  const culinaryText = culinaries
+    .map((c) => `- ${c.name} (${c.category}, ${c.priceRange}, buka ${c.hours}): ${c.signature}`)
+    .join("\n");
 
-  const eventSummary = events.map((e) => ({
-    judul: e.title,
-    tanggal: e.date,
-    lokasi: e.location,
-    deskripsi: e.description,
-  }));
+  const eventText = events
+    .map((e) => `- ${e.title} (${e.date}, ${e.location}): ${e.description}`)
+    .join("\n");
 
-  return { kampungSummary, umkmSummary, culinarySummary, eventSummary, stats };
+  return { kampungText, umkmText, culinaryText, eventText };
 }
 
 export async function getChatResponse(history: ChatMessage[]): Promise<string> {
@@ -52,21 +32,17 @@ export async function getChatResponse(history: ChatMessage[]): Promise<string> {
 Kamu adalah "Tengen", asisten virtual resmi untuk Kelurahan Sosromenduran, Gedongtengen, Yogyakarta.
 Kamu ramah, santai, dan komunikatif — bicara seperti orang lokal yang membantu, bukan seperti robot formal.
 
-BERIKUT DATA RESMI SEBAGAI ACUAN UTAMA JAWABANMU:
+DATA KAMPUNG:
+${kb.kampungText}
 
-KAMPUNG (7 kampung di Sosromenduran):
-${JSON.stringify(kb.kampungSummary)}
+DATA UMKM:
+${kb.umkmText}
 
-UMKM:
-${JSON.stringify(kb.umkmSummary)}
+DATA KULINER:
+${kb.culinaryText}
 
-KULINER:
-${JSON.stringify(kb.culinarySummary)}
-
-EVENT/AGENDA:
-${JSON.stringify(kb.eventSummary)}
-
-STATISTIK: ${JSON.stringify(kb.stats)}
+DATA EVENT:
+${kb.eventText}
 
 ATURAN:
 1. Prioritaskan jawaban dari data di atas untuk pertanyaan spesifik soal Sosromenduran (kampung, UMKM, kuliner, event).
