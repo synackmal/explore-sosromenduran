@@ -14,6 +14,7 @@ import { Route as ProfilTimRouteImport } from './routes/profil-tim'
 import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as FunfactRouteImport } from './routes/funfact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -44,6 +45,11 @@ const MapRoute = MapRouteImport.update({
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FunfactRoute = FunfactRouteImport.update({
+  id: '/funfact',
+  path: '/funfact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
+  '/funfact': typeof FunfactRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
   '/profil': typeof ProfilRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
+  '/funfact': typeof FunfactRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
   '/profil': typeof ProfilRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
+  '/funfact': typeof FunfactRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
   '/profil': typeof ProfilRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/events'
+    | '/funfact'
     | '/gallery'
     | '/map'
     | '/profil'
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/events'
+    | '/funfact'
     | '/gallery'
     | '/map'
     | '/profil'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/events'
+    | '/funfact'
     | '/gallery'
     | '/map'
     | '/profil'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
+  FunfactRoute: typeof FunfactRoute
   GalleryRoute: typeof GalleryRoute
   MapRoute: typeof MapRoute
   ProfilRoute: typeof ProfilRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/funfact': {
+      id: '/funfact'
+      path: '/funfact'
+      fullPath: '/funfact'
+      preLoaderRoute: typeof FunfactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -260,6 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
+  FunfactRoute: FunfactRoute,
   GalleryRoute: GalleryRoute,
   MapRoute: MapRoute,
   ProfilRoute: ProfilRoute,
