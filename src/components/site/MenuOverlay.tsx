@@ -12,6 +12,13 @@ const MENU_ITEMS = [
   { to: "/funfact", label: "Funfact" },
 ];
 
+const SECONDARY_LINKS = [
+  { to: "/contact", label: "Chatbot" },
+  { to: "/map", label: "Peta" },
+  { to: "/profil", label: "Tentang Kalurahan" },
+  { to: "/profil-tim", label: "Profil Tim" },
+];
+
 export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <AnimatePresence>
@@ -24,14 +31,14 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
           className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-primary"
         >
           <div className="absolute inset-x-0 top-0 mx-auto flex h-20 max-w-7xl items-center justify-end px-4 md:px-8">
-  <button
-    onClick={onClose}
-    aria-label="Tutup menu"
-    className="flex h-11 w-11 items-center justify-center rounded-full bg-cream text-primary transition-colors hover:bg-cream/90"
-  >
-    <X className="h-5 w-5" />
-  </button>
-</div>
+            <button
+              onClick={onClose}
+              aria-label="Tutup menu"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-cream text-primary transition-colors hover:bg-cream/90"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
 
           <motion.ul
             initial="hidden"
@@ -63,12 +70,31 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
             ))}
           </motion.ul>
 
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-cream/15 pt-6"
+          >
+            {SECONDARY_LINKS.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={onClose}
+                className="text-sm font-medium text-cream/70 transition-colors hover:text-gold"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </motion.div>
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="mt-8 text-center text-xs font-normal uppercase tracking-[0.2em] text-cream/60"
+            className="mt-6 text-center text-xs font-normal uppercase tracking-[0.2em] text-cream/60"
           >
             KKN-PPM UGM Bergandeng Tengen 2026
           </motion.p>
