@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WisataRouteImport } from './routes/wisata'
 import { Route as UmkmRouteImport } from './routes/umkm'
 import { Route as ProfilTimRouteImport } from './routes/profil-tim'
 import { Route as ProfilRouteImport } from './routes/profil'
@@ -21,7 +22,13 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KampungIndexRouteImport } from './routes/kampung.index'
 import { Route as KampungSlugRouteImport } from './routes/kampung.$slug'
+import { Route as EventsSlugRouteImport } from './routes/events_.$slug'
 
+const WisataRoute = WisataRouteImport.update({
+  id: '/wisata',
+  path: '/wisata',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UmkmRoute = UmkmRouteImport.update({
   id: '/umkm',
   path: '/umkm',
@@ -82,6 +89,11 @@ const KampungSlugRoute = KampungSlugRouteImport.update({
   path: '/kampung/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsSlugRoute = EventsSlugRouteImport.update({
+  id: '/events_/$slug',
+  path: '/events/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,6 +106,8 @@ export interface FileRoutesByFullPath {
   '/profil': typeof ProfilRoute
   '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
+  '/wisata': typeof WisataRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
 }
@@ -108,6 +122,8 @@ export interface FileRoutesByTo {
   '/profil': typeof ProfilRoute
   '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
+  '/wisata': typeof WisataRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung': typeof KampungIndexRoute
 }
@@ -123,6 +139,8 @@ export interface FileRoutesById {
   '/profil': typeof ProfilRoute
   '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
+  '/wisata': typeof WisataRoute
+  '/events_/$slug': typeof EventsSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
 }
@@ -139,6 +157,8 @@ export interface FileRouteTypes {
     | '/profil'
     | '/profil-tim'
     | '/umkm'
+    | '/wisata'
+    | '/events/$slug'
     | '/kampung/$slug'
     | '/kampung/'
   fileRoutesByTo: FileRoutesByTo
@@ -153,6 +173,8 @@ export interface FileRouteTypes {
     | '/profil'
     | '/profil-tim'
     | '/umkm'
+    | '/wisata'
+    | '/events/$slug'
     | '/kampung/$slug'
     | '/kampung'
   id:
@@ -167,6 +189,8 @@ export interface FileRouteTypes {
     | '/profil'
     | '/profil-tim'
     | '/umkm'
+    | '/wisata'
+    | '/events_/$slug'
     | '/kampung/$slug'
     | '/kampung/'
   fileRoutesById: FileRoutesById
@@ -182,12 +206,21 @@ export interface RootRouteChildren {
   ProfilRoute: typeof ProfilRoute
   ProfilTimRoute: typeof ProfilTimRoute
   UmkmRoute: typeof UmkmRoute
+  WisataRoute: typeof WisataRoute
+  EventsSlugRoute: typeof EventsSlugRoute
   KampungSlugRoute: typeof KampungSlugRoute
   KampungIndexRoute: typeof KampungIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wisata': {
+      id: '/wisata'
+      path: '/wisata'
+      fullPath: '/wisata'
+      preLoaderRoute: typeof WisataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/umkm': {
       id: '/umkm'
       path: '/umkm'
@@ -272,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KampungSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events_/$slug': {
+      id: '/events_/$slug'
+      path: '/events/$slug'
+      fullPath: '/events/$slug'
+      preLoaderRoute: typeof EventsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -286,6 +326,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProfilRoute: ProfilRoute,
   ProfilTimRoute: ProfilTimRoute,
   UmkmRoute: UmkmRoute,
+  WisataRoute: WisataRoute,
+  EventsSlugRoute: EventsSlugRoute,
   KampungSlugRoute: KampungSlugRoute,
   KampungIndexRoute: KampungIndexRoute,
 }
