@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, MapPin, Utensils, Landmark, PartyPopper, Quote } from "lucide-react";
+import { ArrowRight, MapPin, PartyPopper, Quote } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "@/components/site/SectionHeader";
+import { CountUpNumber } from "@/components/site/CountUpNumber";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -109,15 +110,16 @@ function Home() {
         </div>
         <div className="grid grid-cols-2 gap-4">
           {[
-            { icon: Landmark, label: "Kampung", value: stats.kampungs },
-            { icon: MapPin, label: "Luas Wilayah", value: "0,64 km²" },
-            { icon: Utensils, label: "Jumlah Penduduk", value: "±11.000" },
-            { icon: MapPin, label: "Wisata Tercatat", value: stats.attractions },
+            { label: "Kampung", target: stats.kampungs, decimals: 0 },
+            { label: "Luas Wilayah", target: 0.64, decimals: 2, suffix: " km²" },
+            { label: "Jumlah Penduduk", target: 11000, decimals: 0, prefix: "±" },
+            { label: "Wisata Tercatat", target: stats.attractions, decimals: 0 },
           ].map((s) => (
             <Card key={s.label} className="glass border-border/60">
               <CardContent className="p-6">
-                <s.icon className="h-6 w-6 text-primary mb-3" />
-                <div className="text-3xl md:text-4xl font-display font-bold text-gradient-warm">{s.value}</div>
+                <div className="text-3xl md:text-4xl font-display font-bold text-gradient-warm">
+                  <CountUpNumber target={s.target} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+                </div>
                 <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
               </CardContent>
             </Card>
