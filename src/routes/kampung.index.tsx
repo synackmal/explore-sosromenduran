@@ -21,7 +21,7 @@ export const Route = createFileRoute("/kampung/")({
 function KampungIndex() {
   return (
     <SiteLayout>
-      <PageHero eyebrow="7 Kampung Heritage" title="Kampung Sosromenduran" subtitle="Setiap kampung adalah bab cerita — dari mural, kuliner, hingga seni batik warga." image={heroKampung} />
+      <PageHero eyebrow="7 Kampung Heritage" title="Kampung-kampung di Sosromenduran" subtitle="Setiap kampung adalah bab cerita, dari mural, kuliner, hingga seni batik warga." image={heroKampung} />
       <section className="mx-auto max-w-7xl px-4 md:px-8 pt-14 pb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {kampungs.map((k, i) => (
           <motion.div key={k.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>

@@ -1,6 +1,13 @@
 import kampungImg from "@/assets/kampung-1.jpg";
 import culinaryImg from "@/assets/culinary-1.jpg";
 import umkmImg from "@/assets/umkm-1.jpg";
+import coverSitisewu from "@/assets/kampung/sitisewu.jpeg";
+import coverSosrowijayanWetan from "@/assets/kampung/sosrowijayan-wetan.jpg";
+import coverSosrowijayanKulon from "@/assets/kampung/sosrowijayan-kulon.jpeg";
+import coverSosrodipuran from "@/assets/kampung/sosrodipuran.jpeg";
+import coverSosromenduran from "@/assets/kampung/sosromenduran.jpeg";
+import coverPajeksan from "@/assets/kampung/pajeksan.jpeg";
+import coverJogonegaran from "@/assets/kampung/jogonegaran.jpeg";
 
 export type Kampung = {
   slug: string;
@@ -54,39 +61,114 @@ function slugify(text: string) {
     .replace(/(^-|-$)/g, "");
 }
 
-const KAMPUNG_NAMES = [
-  "Sosrowijayan Wetan",
-  "Sosrowijayan Kulon",
-  "Jogonegaran",
-  "Pajeksan",
-  "Gandekan Lor",
-  "Dagen",
-  "Pringgokusuman",
+type KampungSeed = {
+  name: string;
+  cover: string;
+  short: string;
+  history: string;
+  uniqueness: string;
+  attractions: string[];
+};
+
+// Sejarah lengkap dari riset tim — TODO: verifikasi ulang & lengkapi attractions/culturalActivities per kampung
+const KAMPUNG_SEEDS: KampungSeed[] = [
+  {
+    name: "Sitisewu",
+    cover:  coverSitisewu,
+    short: "Dulu kampung abdi dalem pengurus tenaga kerja keraton, kini dikenal lewat kerajinan kain perca dan musik kentongan.",
+    history: `Nama Sitisewu tak lahir dari kebetulan. Kampung ini dahulu merupakan tempat tinggal para abdi dalem keraton yang bertugas mengurus "bau suku", yaitu penyediaan tenaga kerja atau buruh bagi keperluan Keraton Yogyakarta. Setiap kali istana membutuhkan tambahan tenaga untuk pembangunan atau upacara, para abdi dalem dari kampung inilah yang bertugas mencarikannya, menjadikan Sitisewu semacam "kantor perekrutan" tenaga kerja keraton pada masanya.
+
+Seiring waktu, fungsi administratif keraton itu memudar bersama perubahan zaman, namun jiwa gotong royong dan keterampilan tangan warganya tetap diwariskan turun-temurun. Kampung yang berada di wilayah Sosromenduran ini kemudian dikenal luas melalui kreativitas warganya, terutama para ibu lanjut usia yang menekuni kerajinan dari limbah kain perca menjadi dompet, tas, gantungan kunci, hingga taplak meja bersulam tangan.
+
+Selain kerajinan tangan, Sitisewu juga menjaga kelestarian kesenian musik tradisional kentongan, warisan budaya yang jarang ditemui di kampung-kampung kota lain. Kombinasi antara semangat kerja abdi dalem masa lalu dan kreativitas ekonomi warga masa kini membuat Sitisewu tumbuh sebagai kampung wisata yang bahkan pernah didatangi wisatawan mancanegara yang ingin belajar langsung proses pembuatan kerajinan khas kampung ini.`,
+    uniqueness: "Kerajinan kain perca hasil karya ibu-ibu lansia, serta kesenian musik kentongan yang jarang ditemui di kampung kota lain.",
+    attractions: ["Sentra kerajinan kain perca", "Musik tradisional kentongan"],
+  },
+  {
+    name: "Sosrowijayan Wetan",
+    cover: coverSosrowijayanWetan,
+    short: "Kampung asal abdi dalem Sosrowijoyo yang bertransformasi jadi kawasan penginapan backpacker dekat Malioboro.",
+    history: `Sosrowijayan mengambil nama dari KRT Sosrowijoyo, suami seorang putri Sri Sultan Hamengku Buwono II. Dalem atau kediaman Sosrowijoyo dahulu berdiri di selatan Stasiun Tugu, menjadi pusat kampung yang kemudian membelah wilayah ini menjadi dua, yakni Sosrowijayan Wetan di sisi timur dan Sosrowijayan Kulon di sisi barat. Kini bangunan dalem tersebut sudah tiada, berganti fungsi menjadi hotel, namun namanya tetap melekat abadi pada kampung ini.
+
+Letaknya yang strategis, hanya sekitar dua ratus meter dari Stasiun Tugu dan berbatasan langsung dengan Jalan Malioboro, membuat Sosrowijayan Wetan mengalami transformasi besar pada paruh akhir abad ke-20. Dari kampung permukiman biasa, wilayah ini perlahan berubah menjadi kampung turis di Yogyakarta bersamaan dengan daerah Prawirotaman, seiring menjamurnya losmen dan penginapan murah yang menyasar wisatawan backpacker domestik maupun asing.
+
+Perpaduan budaya lokal dan internasional pun tumbuh secara organik di sini. Banyak warga yang bekerja di sektor jasa pariwisata, mulai dari pengelola penginapan, pemandu wisata, hingga usaha laundry dan toko cendera mata. Julukan "Kampung Internasional" yang disematkan pada kampung ini menjadikan Sosrowijayan Wetan sebagai bukti nyata bagaimana sebuah kampung tempat abdi dalem keraton tinggal dapat bertransformasi menjadi kampung kosmopolitan tanpa kehilangan akar sejarahnya.`,
+    uniqueness: "Dijuluki 'Kampung Internasional', pusat losmen dan penginapan backpacker paling dekat dengan Stasiun Tugu.",
+    attractions: ["Kawasan penginapan backpacker", "Dekat Stasiun Tugu & Malioboro"],
+  },
+  {
+    name: "Sosrowijayan Kulon",
+    cover: coverSosrowijayanKulon,
+    short: "Belahan barat Sosrowijayan, rumah bagi kawasan legendaris Pasar Kembang.",
+    history: `Sebagai belahan barat dari kampung yang sama-sama menyandang nama Sosrowijoyo, Sosrowijayan Kulon berbagi asal-usul yang identik dengan tetangganya di sisi timur. Namun sejarah membawa kedua wilayah ini ke arah perkembangan yang berbeda. Jika Sosrowijayan Wetan lebih dulu dikenal sebagai kampung turis dengan deretan losmen dan hotel, Sosrowijayan Kulon justru membentuk karakternya sendiri lewat keberadaan kawasan Pasar Kembang yang legendaris.
+
+Nama Pasar Kembang sendiri telah lama identik dengan bagian dari sejarah sosial Yogyakarta di seputar Stasiun Tugu, sebuah kawasan yang tumbuh seiring geliat perdagangan dan aktivitas di sekitar jalur kereta api sejak masa kolonial. Branding kawasan ini terbentuk lebih dahulu dan lebih kuat dibandingkan nama kampungnya sendiri, sehingga banyak orang mengenal wilayah ini lewat nama pasarnya ketimbang nama administratifnya.
+
+Dari masa ke masa, Sosrowijayan Kulon tetap menjadi bagian tak terpisahkan dari denyut kawasan Malioboro-Tugu, hidup berdampingan dengan saudaranya di sisi timur namun mempertahankan identitas lokalnya yang khas. Kini kampung ini turut menjadi bagian dari jejaring Kampung Wisata Sosromenduran, melengkapi keragaman potensi ketujuh kampung dalam kelurahan yang sama.`,
+    uniqueness: "Rumah bagi kawasan Pasar Kembang (Sarkem), salah satu kawasan bersejarah paling dikenal di seputar Stasiun Tugu.",
+    attractions: ["Kawasan Pasar Kembang", "Denyut kawasan Malioboro-Tugu"],
+  },
+  {
+    name: "Sosrodipuran",
+    cover: coverSosrodipuran,
+    short: "Bekas kediaman putri keraton yang kini menjadi lokasi sekolah bersejarah dan sentra kerajinan kulit.",
+    history: `Kampung ini dinamai dari BRAy Sosrodipuro (atau Sosrodipura), putri Sri Sultan Hamengku Buwono II dari garwa BRAy Surtikanthi. Dalem Sosrodipuran, yang kini berdiri di Jalan Dagen, dahulu merupakan kediaman sang putri dengan arsitektur khas Jawa lengkap dengan pendapa dan dalem ageng beratap joglo. Letaknya berdampingan dengan Kampung Sosromenduran, tepat di selatan Sosrowijayan, menjadikannya bagian dari klaster permukiman kerabat keraton di kawasan ini.
+
+Bangunan bersejarah ini memasuki babak baru ketika kompleksnya difungsikan sebagai sarana pendidikan. Yayasan Netral yang mendirikan Neutrale School pada 12 Desember 1912 kemudian menjadikan Pendapa Ndalem Sosrodipuran sebagai lokasi sekolah permanennya. Bagian belakang kompleks ini bahkan sempat digunakan sebagai area perkuliahan Universitas Proklamasi 45 (UP45) sebelum akhirnya dialihfungsikan penuh untuk SD Netral C & D Yogyakarta. Meski beberapa struktur asli seperti dalem ageng telah mengalami perubahan dan pelapukan usia, bagian pendapa dan beberapa elemen bangunan tetap dipertahankan sebagai cagar budaya kota.
+
+Dari sisi kehidupan warga, Sosrodipuran tumbuh dengan karakter yang berbeda dari kampung sekitarnya. Wilayah ini dikenal dengan potensi kerajinan kulit serta seni tari tradisional yang terus dilestarikan oleh generasi ke generasi, mencerminkan bagaimana warisan estetika keraton yang dahulu melekat pada sang putri kini menjelma menjadi denyut kesenian rakyat sehari-hari.`,
+    uniqueness: "Bekas kediaman putri keraton yang kini menjadi lokasi SD Netral, dengan pendapa cagar budaya yang masih terjaga.",
+    attractions: ["Pendapa cagar budaya Sosrodipuran", "Kerajinan kulit", "Seni tari tradisional"],
+  },
+  {
+    name: "Sosromenduran",
+    cover: coverSosromenduran,
+    short: "Kampung asal nama kelurahan, dulu pemukiman abdi dalem, kini sentra produksi kaos dan souvenir Malioboro.",
+    history: `Sebagai kampung yang namanya diabadikan menjadi nama kelurahan, Sosromenduran memiliki posisi istimewa. Kampung ini berdiri di seputar dalem KRT Sosromenduro, yang merupakan seorang abdi dalem keraton, dengan lokasi yang berdampingan dengan Sosrodipuran dan berada di selatan Sosrowijayan. Pola penamaan semacam ini lazim ditemui di kampung-kampung njaban beteng atau luar benteng Keraton Yogyakarta, tempat nama-nama abdi dalem diabadikan menjadi identitas wilayah tempat tinggal mereka.
+
+Berbeda dari kampung tetangganya yang lebih identik dengan kediaman putra-putri raja, Sosromenduran mencerminkan jejak abdi dalem yang mengabdi langsung kepada keraton. Letaknya yang berdekatan dengan Malioboro dan Stasiun Tugu perlahan mengubah wajah kampung ini dari pemukiman abdi dalem menjadi kawasan ekonomi kreatif, terutama sejak dikenal sebagai sentra produksi kaos oblong dan aneka souvenir yang menopang aktivitas wisata di kawasan Malioboro.
+
+Kini, sebagai representasi dari seluruh kelurahan, Sosromenduran terus berinovasi menjadi kampung wisata kota yang aktif, tak hanya menjadi penyangga kawasan Malioboro, bahkan kampung tersebut tampil sebagai etalase budaya urban Yogyakarta, lengkap dengan berbagai kegiatan warga mulai dari karnaval pelajar hingga penyuluhan kesehatan lansia yang mempertahankan semangat gotong royong ala abdi dalem pendahulunya.`,
+    uniqueness: "Sentra produksi kaos oblong dan souvenir yang menopang aktivitas wisata Malioboro.",
+    attractions: ["Sentra produksi kaos & souvenir", "Etalase budaya urban Yogyakarta"],
+  },
+  {
+    name: "Pajeksan",
+    cover: coverPajeksan,
+    short: "Dulu tempat tinggal abdi dalem jaksa, kini kampung multietnis dengan warisan kuliner Tionghoa yang kental.",
+    history: `Nama Pajeksan berasal dari kata "Jeksa" atau jaksa, merujuk pada abdi dalem yang dahulu bertugas menangani urusan hukum dan peradilan di lingkungan Keraton Yogyakarta. Kampung ini menjadi tempat tinggal para abdi dalem jeksa tersebut, menjadikannya salah satu kampung dengan fungsi administratif-yudisial yang khas di antara kampung-kampung njaban beteng lainnya.
+
+Seiring waktu, komposisi penduduk Pajeksan berkembang menjadi lebih majemuk, dihuni oleh percampuran etnis Jawa, Madura, Minang, Batak, dan yang paling menonjol adalah etnis Tionghoa dalam jumlah besar. Perpaduan budaya inilah yang kemudian membentuk wajah kuliner khas kampung ini, dengan warga yang piawai memproduksi aneka penganan berakar budaya Tionghoa seperti bakpia, kue ku, thong pia, hingga hidangan seperti cwie mie dan mie angsio yang disajikan di rumah-rumah makan setempat.
+
+Warisan multietnis ini terus hidup hingga kini. Jika dahulu Pajeksan dikenal luas lewat julukan 'Pajeksan Kacangan' sebagai sentra kacang bawang, kini denyut akulturasi itu tetap terjaga melalui kreativitas pembuatan Barongsai dan Naga yang menjadi andalan warga. Bersanding dengan alunan musik keroncong, Pajeksan pun menjadi bukti nyata bagaimana sebuah kampung abdi dalem bertransformasi menjadi ruang perjumpaan lintas budaya yang khas Yogyakarta.`,
+    uniqueness: "Kampung multietnis dengan warisan kuliner Tionghoa serta kerajinan Barongsai dan Naga.",
+    attractions: ["Kuliner khas Tionghoa-Jawa", "Kerajinan Barongsai & Naga", "Musik keroncong"],
+  },
+  {
+    name: "Jogonegaran",
+    cover: coverJogonegaran,
+    short: "Bekas dalem putri keraton dan kampus, kini berkembang jadi kampung sayur dan kuliner olahan warga.",
+    history: `Jogonegaran menyimpan jejak salah satu dalem penting di Yogyakarta. Bangunan dalem yang menjadi cikal bakal nama kampung ini dibangun pada masa pemerintahan Sri Sultan Hamengku Buwono VII (1877-1921), dan pada awalnya ditempati oleh sang putri, GKR Dewi, dari permaisuri GKR Kencono. Letak kampung ini berada di sebelah barat Kampung Dagen dan Pajeksan, menyatu dalam gugusan kampung keraton di sekitar kawasan Malioboro.
+
+Dari warisan sejarah sebagai dalem bangsawan dan bekas kampus, Jogonegaran hari ini menemukan identitas barunya sebagai kampung yang mengembangkan konsep kampung sayur dan kuliner olahan berbasis pemberdayaan masyarakat. Transformasi ini menunjukkan bagaimana kampung yang dulunya sarat dengan aktivitas keraton dan akademik kini merangkul potensi ekonomi kerakyatan sebagai wajah barunya di tengah kawasan wisata Malioboro.`,
+    uniqueness: "Bekas dalem putri keraton yang kini dikenal sebagai kampung sayur dan kuliner olahan berbasis warga.",
+    attractions: ["Kampung sayur", "Kuliner olahan warga"],
+  },
 ];
 
-export const kampungs: Kampung[] = KAMPUNG_NAMES.map((name, i) => ({
-  slug: name.toLowerCase().replace(/\s+/g, "-"),
-  name,
-  cover: kampungImg,
-  short: `Kampung ${name} adalah salah satu kampung bersejarah di Kelurahan Sosromenduran dengan karakter budaya yang khas.`,
-  history: `Kampung ${name} berdiri sejak masa Kesultanan Yogyakarta. Nama kampung ini berkaitan erat dengan profesi dan peran warganya pada masa Keraton, dan berkembang seiring tumbuhnya kawasan Malioboro sebagai jantung wisata Yogyakarta.`,
-  uniqueness: `Suasana kampung yang menyatu dengan denyut Malioboro, warga yang ramah, gang-gang bermural, serta aktivitas UMKM dan kuliner khas Yogyakarta.`,
-  attractions: [
-    "Gang mural batik",
-    "Kampung wisata heritage",
-    "Studio batik warga",
-    "Sudut instagramable",
-  ],
-  culturalActivities: [
-    "Jathilan bulanan",
-    "Latihan gamelan warga",
-    "Kirab budaya",
-    "Workshop batik",
-  ],
-  gallery: [kampungImg, umkmImg, culinaryImg, kampungImg],
-  location: { lat: -7.7925 + i * 0.001, lng: 110.365 + i * 0.001 },
-  umkm: ["batik-lestari", "kopi-gandekan"],
-  culinary: ["gudeg-yu-djum", "sate-kere-pak-min"],
+export const kampungs: Kampung[] = KAMPUNG_SEEDS.map((k, i) => ({
+  slug: slugify(k.name),
+  name: k.name,
+  cover: k.cover, 
+  short: k.short,
+  history: k.history,
+  uniqueness: k.uniqueness,
+  attractions: k.attractions,
+  culturalActivities: [], // TODO: isi aktivitas budaya rutin per kampung kalau ada
+  gallery: [kampungImg, umkmImg, culinaryImg],
+  location: { lat: -7.7925 + i * 0.001, lng: 110.365 + i * 0.001 }, // TODO: ganti koordinat asli
+  umkm: [], // TODO: hubungkan slug UMKM yang berlokasi di kampung ini
+  culinary: [], // TODO: hubungkan slug kuliner yang berlokasi di kampung ini
 }));
 
 export const umkms: UMKM[] = [

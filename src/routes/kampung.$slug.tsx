@@ -35,10 +35,12 @@ function KampungDetail() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-black/40" />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto max-w-7xl w-full px-4 md:px-8 pb-10 text-white">
-            <Link to="/kampung" className="inline-flex items-center gap-2 text-sm mb-4 opacity-80 hover:opacity-100">
-              <ArrowLeft className="h-4 w-4" /> Semua Kampung
-            </Link>
-            <Badge className="bg-white/15 text-white border-white/30 backdrop-blur mb-3">Heritage Kampung</Badge>
+            <Link
+  to="/kampung"
+  className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm text-white backdrop-blur-md transition-colors hover:bg-white/25 mb-4"
+>
+  <ArrowLeft className="h-4 w-4" /> Semua Kampung
+</Link>
             <h1 className="font-display text-4xl md:text-6xl font-bold">{k.name}</h1>
             <p className="mt-3 max-w-2xl text-white/85">{k.short}</p>
           </div>
@@ -65,16 +67,7 @@ function KampungDetail() {
               ))}
             </div>
           </Section>
-
-          <Section title="Galeri">
-            <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
-              {k.gallery.map((g, i) => (
-                <div key={i} className="aspect-square overflow-hidden rounded-xl">
-                  <img src={g} alt="" loading="lazy" className="h-full w-full object-cover hover:scale-110 transition-transform duration-500" />
-                </div>
-              ))}
-            </div>
-          </Section>
+          
         </div>
 
         <aside className="space-y-6">
@@ -105,7 +98,7 @@ function KampungDetail() {
               <div className="text-sm font-semibold flex items-center gap-2 mb-3"><Utensils className="h-4 w-4 text-primary" /> Kuliner</div>
               <ul className="space-y-2 text-sm">
                 {k.culinary.map((c) => (
-                  <li key={c}><Link to="/culinary" className="hover:text-primary">{c.replace(/-/g, " ")}</Link></li>
+                  <li key={c}><Link to="/umkm" className="hover:text-primary">{c.replace(/-/g, " ")}</Link></li>
                 ))}
               </ul>
             </CardContent>

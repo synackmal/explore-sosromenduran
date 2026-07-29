@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, MapPin, PartyPopper, Quote } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { CountUpNumber } from "@/components/site/CountUpNumber";
@@ -111,9 +111,9 @@ function Home() {
         <div className="grid grid-cols-2 gap-4">
           {[
             { label: "Kampung", target: stats.kampungs, decimals: 0 },
-            { label: "Luas Wilayah", target: 0.64, decimals: 2, suffix: " km²" },
-            { label: "Jumlah Penduduk", target: 11000, decimals: 0, prefix: "±" },
-            { label: "Wisata Tercatat", target: stats.attractions, decimals: 0 },
+            { label: "Luas Wilayah", target: 0.49, decimals: 2, suffix: " km²" },
+            { label: "Jumlah Penduduk", target: 7236, decimals: 0, prefix: "±" },
+            { label: "Rukun Warga", target: 14, decimals: 0 },
           ].map((s) => (
             <Card key={s.label} className="glass border-border/60">
               <CardContent className="p-6">
@@ -135,26 +135,22 @@ function Home() {
 
   <div className="relative mt-4">
     <motion.div
-      className="flex w-max gap-5 px-4"
+      className="flex w-max gap-0"
       animate={{ x: ["0%", "-50%"] }}
-      transition={{ duration: 32, ease: "linear", repeat: Infinity }}
+      transition={{ duration: 64, ease: "linear", repeat: Infinity }}
     >
       {[...BEAUTY_ITEMS, ...BEAUTY_ITEMS].map((item, i) =>
-        item.type === "image" ? (
+       item.type === "image" ? (
+  <div
+    key={i}
+    className="relative h-[420px] w-[300px] shrink-0 overflow-hidden  md:h-[460px] md:w-[340px]"
+  >
+    <img src={item.src} alt={item.caption} className="h-full w-full object-cover" />
+  </div>
+) : (
           <div
             key={i}
-            className="relative h-[420px] w-[300px] shrink-0 overflow-hidden rounded-3xl md:h-[460px] md:w-[340px]"
-          >
-            <img src={item.src} alt={item.caption} className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <p className="absolute bottom-4 left-4 right-4 font-display text-sm font-semibold text-white md:text-base">
-              {item.caption}
-            </p>
-          </div>
-        ) : (
-          <div
-            key={i}
-            className={`flex h-[420px] w-[300px] shrink-0 flex-col justify-center rounded-3xl p-7 md:h-[460px] md:w-[340px] md:p-8 ${
+            className={`flex h-[420px] w-[300px] shrink-0 flex-col justify-center p-7 md:h-[460px] md:w-[340px] md:p-8 ${
               item.dark ? "bg-primary text-cream" : "bg-tertiary/15 text-foreground"
             }`}
           >
@@ -221,55 +217,30 @@ function Home() {
         </div>
       </section>
 
-      {/* Map preview */}
-      <section className="mx-auto max-w-7xl px-4 md:px-8 py-16">
-        <Card className="overflow-hidden border-border/60">
-          <div className="grid md:grid-cols-2">
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <SectionHeader eyebrow="Tourism Map" title="Peta Wisata Interaktif" subtitle="Temukan destinasi, kuliner, UMKM, hingga fasilitas umum dalam satu peta interaktif berbasis ArcGIS." />
-              <Button asChild className="rounded-full w-fit"><Link to="/map">Buka Peta <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-            </div>
-            <div className="relative aspect-[4/3] md:aspect-auto bg-gradient-to-br from-primary/20 to-accent/20 batik-pattern">
-              <div className="absolute inset-0 grid place-items-center">
-                <MapPin className="h-16 w-16 text-primary drop-shadow-lg" />
-              </div>
-            </div>
-          </div>
-        </Card>
-      </section>
-
-      {/* Event CTA banner */}
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pb-16">
-        <div className="flex flex-col items-center gap-6 rounded-3xl bg-gradient-to-br from-primary to-accent p-10 text-center text-cream md:flex-row md:justify-between md:text-left md:p-12">
-          <div className="flex items-center gap-4">
-            <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 md:flex">
-              <PartyPopper className="h-7 w-7" />
-            </div>
-            <div>
-              <h3 className="font-display text-2xl font-bold md:text-3xl">Event Tahunan Sosromenduran</h3>
-              <p className="mt-2 text-cream/85 max-w-md">
-                Dari Sarkem Fest sampai Kirab Budaya — kenali tradisi dan perayaan rutin warga sepanjang tahun.
-              </p>
-            </div>
-          </div>
-          <Button asChild size="lg" variant="secondary" className="rounded-full shrink-0">
-            <Link to="/events">Lihat Semua Event <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 md:px-8 pb-20">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-[var(--gold)] to-accent p-10 md:p-16 text-center">
-          <div className="relative z-10">
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white">Siap menjelajahi Sosromenduran?</h2>
-            <p className="mt-4 text-white/85 max-w-xl mx-auto">Rencanakan kunjungan Anda, temukan kampung, kuliner, dan cerita budaya yang menunggu.</p>
-            <Button asChild size="lg" variant="secondary" className="mt-8 rounded-full">
-              <Link to="/map">Mulai Petualangan <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Explore CTA */}
+<section className="mx-auto max-w-4xl px-4 md:px-8 py-24 text-center">
+  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Siap Menjelajah?</p>
+  <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
+    Jelajahi Sosromenduran dengan cara Anda sendiri.
+  </h2>
+  <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
+    <Link
+      to="/map"
+      className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
+    >
+      Explore Peta
+      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+    </Link>
+    <Link
+      to="/kampung"
+      className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
+    >
+      Explore Kampung
+      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+    </Link>
+  </div>
+</section>
     </SiteLayout>
+
   );
 }
