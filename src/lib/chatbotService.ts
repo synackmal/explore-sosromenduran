@@ -1,4 +1,5 @@
-import { kampungs, umkms, culinaries, events } from "@/data/mock";
+import { kampungs, umkms, culinaries } from "@/data/mock";
+import { EVENTS } from "@/data/events";
 
 const apiKey = import.meta.env.VITE_GROQ_API_KEY;
 
@@ -17,8 +18,8 @@ function buildKnowledgeBase() {
     .map((c) => `- ${c.name} (${c.category}, ${c.priceRange}, buka ${c.hours}): ${c.signature}`)
     .join("\n");
 
-  const eventText = events
-    .map((e) => `- ${e.title} (${e.date}, ${e.location}): ${e.description}`)
+  const eventText = EVENTS
+    .map((e) => `- ${e.title} (${e.period}, ${e.location}): ${e.description}`)
     .join("\n");
 
   return { kampungText, umkmText, culinaryText, eventText };

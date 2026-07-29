@@ -8,7 +8,7 @@ export function Footer() {
         <div>
           <div className="font-display text-2xl font-bold">Bergandeng Tengen</div>
           <p className="mt-2 text-sm text-cream/70">
-            Discover the Hidden Gems of Sosromenduran — portal wisata resmi Kelurahan Sosromenduran, Yogyakarta.
+            Discover the Hidden Gems of Sosromenduran
           </p>
           <div className="mt-4 flex gap-3">
             <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="#"><Instagram className="h-4 w-4" /></a>
@@ -21,7 +21,6 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-cream/70">
             <li><Link to="/kampung">Kampung</Link></li>
             <li><Link to="/umkm">UMKM</Link></li>
-            <li><Link to="/culinary">Kuliner</Link></li>
             <li><Link to="/map">Peta Wisata</Link></li>
           </ul>
         </div>
@@ -37,14 +36,14 @@ export function Footer() {
         <div>
           <div className="font-semibold mb-3">Kontak</div>
           <ul className="space-y-2 text-sm text-cream/70">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 mt-0.5" /> Jl. Sosrowijayan, Yogyakarta 55271</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 mt-0.5" /> +62 274 512 345</li>
-            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 mt-0.5" /> info@sosromenduran.id</li>
+            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 mt-0.5" /> Jl. Sosrowijayan No 21, Yogyakarta 55271</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 mt-0.5" /> (0274) 547317</li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 mt-0.5" /> sosromenduran@jogjakota.go.id</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} Kelurahan Sosromenduran. All rights reserved.
+        © {new Date().getFullYear()} Kalurahan Sosromenduran - KKN-PPM UGM Bergandeng Tengen 
       </div>
     </footer>
   );

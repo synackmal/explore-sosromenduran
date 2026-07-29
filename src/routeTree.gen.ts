@@ -9,20 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WisataRouteImport } from './routes/wisata'
 import { Route as UmkmRouteImport } from './routes/umkm'
+import { Route as ProfilTimRouteImport } from './routes/profil-tim'
+import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as FunfactRouteImport } from './routes/funfact'
 import { Route as EventsRouteImport } from './routes/events'
-import { Route as CulinaryRouteImport } from './routes/culinary'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KampungIndexRouteImport } from './routes/kampung.index'
 import { Route as KampungSlugRouteImport } from './routes/kampung.$slug'
+import { Route as EventsSlugRouteImport } from './routes/events_.$slug'
 
+const WisataRoute = WisataRouteImport.update({
+  id: '/wisata',
+  path: '/wisata',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UmkmRoute = UmkmRouteImport.update({
   id: '/umkm',
   path: '/umkm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilTimRoute = ProfilTimRouteImport.update({
+  id: '/profil-tim',
+  path: '/profil-tim',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilRoute = ProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapRoute = MapRouteImport.update({
@@ -35,14 +54,14 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FunfactRoute = FunfactRouteImport.update({
+  id: '/funfact',
+  path: '/funfact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CulinaryRoute = CulinaryRouteImport.update({
-  id: '/culinary',
-  path: '/culinary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -70,16 +89,25 @@ const KampungSlugRoute = KampungSlugRouteImport.update({
   path: '/kampung/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsSlugRoute = EventsSlugRouteImport.update({
+  id: '/events_/$slug',
+  path: '/events/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/culinary': typeof CulinaryRoute
   '/events': typeof EventsRoute
+  '/funfact': typeof FunfactRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
+  '/profil': typeof ProfilRoute
+  '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
+  '/wisata': typeof WisataRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
 }
@@ -87,11 +115,15 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/culinary': typeof CulinaryRoute
   '/events': typeof EventsRoute
+  '/funfact': typeof FunfactRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
+  '/profil': typeof ProfilRoute
+  '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
+  '/wisata': typeof WisataRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung': typeof KampungIndexRoute
 }
@@ -100,11 +132,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/culinary': typeof CulinaryRoute
   '/events': typeof EventsRoute
+  '/funfact': typeof FunfactRoute
   '/gallery': typeof GalleryRoute
   '/map': typeof MapRoute
+  '/profil': typeof ProfilRoute
+  '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
+  '/wisata': typeof WisataRoute
+  '/events_/$slug': typeof EventsSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
 }
@@ -114,11 +150,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/culinary'
     | '/events'
+    | '/funfact'
     | '/gallery'
     | '/map'
+    | '/profil'
+    | '/profil-tim'
     | '/umkm'
+    | '/wisata'
+    | '/events/$slug'
     | '/kampung/$slug'
     | '/kampung/'
   fileRoutesByTo: FileRoutesByTo
@@ -126,11 +166,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/culinary'
     | '/events'
+    | '/funfact'
     | '/gallery'
     | '/map'
+    | '/profil'
+    | '/profil-tim'
     | '/umkm'
+    | '/wisata'
+    | '/events/$slug'
     | '/kampung/$slug'
     | '/kampung'
   id:
@@ -138,11 +182,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/culinary'
     | '/events'
+    | '/funfact'
     | '/gallery'
     | '/map'
+    | '/profil'
+    | '/profil-tim'
     | '/umkm'
+    | '/wisata'
+    | '/events_/$slug'
     | '/kampung/$slug'
     | '/kampung/'
   fileRoutesById: FileRoutesById
@@ -151,22 +199,47 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  CulinaryRoute: typeof CulinaryRoute
   EventsRoute: typeof EventsRoute
+  FunfactRoute: typeof FunfactRoute
   GalleryRoute: typeof GalleryRoute
   MapRoute: typeof MapRoute
+  ProfilRoute: typeof ProfilRoute
+  ProfilTimRoute: typeof ProfilTimRoute
   UmkmRoute: typeof UmkmRoute
+  WisataRoute: typeof WisataRoute
+  EventsSlugRoute: typeof EventsSlugRoute
   KampungSlugRoute: typeof KampungSlugRoute
   KampungIndexRoute: typeof KampungIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wisata': {
+      id: '/wisata'
+      path: '/wisata'
+      fullPath: '/wisata'
+      preLoaderRoute: typeof WisataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/umkm': {
       id: '/umkm'
       path: '/umkm'
       fullPath: '/umkm'
       preLoaderRoute: typeof UmkmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil-tim': {
+      id: '/profil-tim'
+      path: '/profil-tim'
+      fullPath: '/profil-tim'
+      preLoaderRoute: typeof ProfilTimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil': {
+      id: '/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ProfilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/map': {
@@ -183,18 +256,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/funfact': {
+      id: '/funfact'
+      path: '/funfact'
+      fullPath: '/funfact'
+      preLoaderRoute: typeof FunfactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/culinary': {
-      id: '/culinary'
-      path: '/culinary'
-      fullPath: '/culinary'
-      preLoaderRoute: typeof CulinaryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -232,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KampungSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events_/$slug': {
+      id: '/events_/$slug'
+      path: '/events/$slug'
+      fullPath: '/events/$slug'
+      preLoaderRoute: typeof EventsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -239,11 +319,15 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  CulinaryRoute: CulinaryRoute,
   EventsRoute: EventsRoute,
+  FunfactRoute: FunfactRoute,
   GalleryRoute: GalleryRoute,
   MapRoute: MapRoute,
+  ProfilRoute: ProfilRoute,
+  ProfilTimRoute: ProfilTimRoute,
   UmkmRoute: UmkmRoute,
+  WisataRoute: WisataRoute,
+  EventsSlugRoute: EventsSlugRoute,
   KampungSlugRoute: KampungSlugRoute,
   KampungIndexRoute: KampungIndexRoute,
 }
