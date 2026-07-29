@@ -14,6 +14,7 @@ import batikCircle2 from "@/assets/decor/batik-circle-2.png";
 import wordmark from "@/assets/wordmark-bergandeng-tengen.svg";
 import kampungImg from "@/assets/kampung-1.jpg";
 import culinaryImg from "@/assets/culinary-1.jpg";
+import bungaFlower from "@/assets/decor/daun-bunga.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -218,26 +219,42 @@ function Home() {
       </section>
 
       {/* Explore CTA */}
-<section className="mx-auto max-w-4xl px-4 md:px-8 py-24 text-center">
-  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Siap Menjelajah?</p>
-  <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
-    Jelajahi Sosromenduran dengan cara Anda sendiri.
-  </h2>
-  <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-    <Link
-      to="/map"
-      className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
-    >
-      Explore Peta
-      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-    </Link>
-    <Link
-      to="/kampung"
-      className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
-    >
-      Explore Kampung
-      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-    </Link>
+{/* Explore CTA */}
+<section className="relative mx-auto max-w-4xl overflow-hidden px-4 py-24 text-center md:px-8">
+<img
+  src={bungaFlower}
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute left-1 top-6 h-60 w-60 opacity-40 motion-safe:animate-[spinSlow_50s_linear_infinite] md:left-1 md:h-60 md:w-60"
+/>
+<img
+  src={bungaFlower}
+  alt=""
+  aria-hidden="true"
+  className="pointer-events-none absolute right-5 bottom-6 h-16 w-16 rotate-12 opacity-30 motion-safe:animate-[spinSlowReverse_60s_linear_infinite] md:right-10 md:h-50 md:w-50"
+/>
+
+  <div className="relative">
+    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Siap Menjelajah?</p>
+    <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
+      Jelajahi Sosromenduran dengan cara Anda sendiri.
+    </h2>
+    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
+      <Link
+        to="/map"
+        className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
+      >
+        Explore Peta
+        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+      </Link>
+      <Link
+        to="/kampung"
+        className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
+      >
+        Explore Kampung
+        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+      </Link>
+    </div>
   </div>
 </section>
     </SiteLayout>
