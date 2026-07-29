@@ -47,15 +47,6 @@ export type Culinary = {
   category: string;
 };
 
-export type EventItem = {
-  slug: string;
-  title: string;
-  date: string;
-  location: string;
-  description: string;
-  cover: string;
-};
-
 const KAMPUNG_NAMES = [
   "Sosrowijayan Wetan",
   "Sosrowijayan Kulon",
@@ -232,33 +223,6 @@ export const culinaries: Culinary[] = [
     gallery: [culinaryImg],
     location: { lat: -7.7934, lng: 110.3661 },
     category: "Minuman",
-  },
-];
-
-export const events: EventItem[] = [
-  {
-    slug: "kirab-budaya-sosromenduran",
-    title: "Kirab Budaya Sosromenduran",
-    date: "2026-08-17",
-    location: "Sepanjang Jl. Sosrowijayan",
-    description: "Pawai budaya tahunan menampilkan bregada, jathilan, dan gunungan hasil bumi.",
-    cover: kampungImg,
-  },
-  {
-    slug: "festival-kuliner-malioboro",
-    title: "Festival Kuliner Malioboro",
-    date: "2026-09-05",
-    location: "Kampung Dagen",
-    description: "Puluhan tenant kuliner legendaris menyajikan menu khas Yogyakarta.",
-    cover: culinaryImg,
-  },
-  {
-    slug: "workshop-batik-warga",
-    title: "Workshop Batik Warga",
-    date: "2026-07-28",
-    location: "Kampung Sosrowijayan Kulon",
-    description: "Belajar membatik langsung dari pengrajin senior kampung.",
-    cover: umkmImg,
   },
 ];
 
