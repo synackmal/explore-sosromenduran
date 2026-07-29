@@ -22,6 +22,7 @@ export type Kampung = {
   location: { lat: number; lng: number };
   umkm: string[];
   culinary: string[];
+  extraSection?: RichSection;
 };
 
 export type UMKM = {
@@ -68,6 +69,19 @@ type KampungSeed = {
   history: string;
   uniqueness: string;
   attractions: string[];
+  extraSection?: RichSection;
+};
+
+export type RichBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "subheading"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "table"; rows: { label: string; value: string }[] };
+
+export type RichSection = {
+  category: "Potensi Wisata" | "Aktivitas Budaya" | "Profil Usaha";
+  subject: string;
+  blocks: RichBlock[];
 };
 
 // Sejarah lengkap dari riset tim — TODO: verifikasi ulang & lengkapi attractions/culturalActivities per kampung
@@ -83,6 +97,43 @@ Seiring waktu, fungsi administratif keraton itu memudar bersama perubahan zaman,
 Selain kerajinan tangan, Sitisewu juga menjaga kelestarian kesenian musik tradisional kentongan, warisan budaya yang jarang ditemui di kampung-kampung kota lain. Kombinasi antara semangat kerja abdi dalem masa lalu dan kreativitas ekonomi warga masa kini membuat Sitisewu tumbuh sebagai kampung wisata yang bahkan pernah didatangi wisatawan mancanegara yang ingin belajar langsung proses pembuatan kerajinan khas kampung ini.`,
     uniqueness: "Kerajinan kain perca hasil karya ibu-ibu lansia, serta kesenian musik kentongan yang jarang ditemui di kampung kota lain.",
     attractions: ["Sentra kerajinan kain perca", "Musik tradisional kentongan"],
+    extraSection: {
+  category: "Profil Usaha",
+  subject: "Ciplak Cipluk",
+  blocks: [
+    { type: "paragraph", text: `Usaha Ciplak Cipluk merupakan usaha kerajinan tangan yang telah berdiri sekitar lima tahun. Nama "Ciplak Cipluk" diambil dari nama panggilan cucu pemilik usaha sebagai bentuk kedekatan keluarga yang kemudian menjadi identitas merek. Awalnya usaha ini hanya memproduksi tas berbahan kain. Namun, seiring berkembangnya kreativitas dan kebutuhan pasar, Ciplak Cipluk kini menghasilkan berbagai produk kerajinan yang memanfaatkan kain perca dan limbah tekstil sebagai bahan baku utama.
+
+Usaha ini lahir dari semangat pemberdayaan masyarakat. Sebelum mendirikan Ciplak Cipluk, pemilik aktif memberikan pelatihan menjahit dan keterampilan kepada masyarakat di berbagai kelurahan. Melihat bahwa banyak peserta pelatihan belum mampu mengembangkan usaha secara mandiri, beliau kemudian mendirikan usaha ini sekaligus mengajak para peserta pelatihan untuk bergabung sebagai tenaga produksi.` },
+    { type: "subheading", text: "Jenis Produk" },
+    { type: "list", items: ["Tas", "Daster", "Dompet", "Gantungan kunci", "Souvenir", "Celemek", "Pot hias", "Dekorasi rumah", "Berbagai kerajinan berbahan limbah tekstil dan plastik"] },
+    { type: "subheading", text: "Bahan Baku" },
+    { type: "list", items: ["Kain lurik", "Batik", "Katun", "Jeans", "Kanvas", "Goni", "Kain perca", "Botol plastik bekas", "Gelas plastik bekas dan limbah lainnya"] },
+    { type: "subheading", text: "Kisaran Harga Produk" },
+    { type: "table", rows: [
+      { label: "Souvenir", value: "Mulai Rp6.500" },
+      { label: "Gantungan kunci", value: "Sekitar Rp10.000" },
+      { label: "Produk kecil", value: "Sekitar Rp15.000" },
+      { label: "Dompet", value: "Rp30.000–Rp35.000" },
+      { label: "Celemek", value: "Sekitar Rp40.000" },
+      { label: "Lukisan kain", value: "Sekitar Rp90.000" },
+      { label: "Daster", value: "Rp100.000–Rp130.000" },
+      { label: "Tas", value: "Mulai Rp140.000" },
+    ] },
+    { type: "paragraph", text: "Harga produk dapat disesuaikan dengan ukuran, desain, tingkat kesulitan pembuatan, dan permintaan konsumen." },
+    { type: "subheading", text: "Proses Produksi" },
+    { type: "paragraph", text: `Salah satu keunikan Ciplak Cipluk terletak pada proses produksinya yang memanfaatkan limbah tekstil menjadi produk baru yang bernilai ekonomi. Seluruh desain dan pola dibuat langsung oleh pemilik usaha sehingga setiap produk memiliki karakter yang khas.
+
+Proses produksi dilakukan secara bertahap, dimulai dari pembuatan desain dan pola, pemotongan bahan, penjahitan, hingga proses finishing berupa bordir, lukis tangan, atau pemasangan aksesori. Dengan konsep upcycling, limbah kain yang sebelumnya tidak memiliki nilai guna diolah kembali menjadi produk fungsional sekaligus memiliki nilai estetika.` },
+    { type: "subheading", text: "Pemberdayaan Masyarakat" },
+    { type: "paragraph", text: `Ciplak Cipluk menjadi wadah pemberdayaan bagi masyarakat yang berada di kawasan Sitisewu. Saat ini usaha tersebut melibatkan sekitar 30–40 orang yang sebagian besar merupakan ibu rumah tangga dan lansia dari beberapa wilayah di Yogyakarta.
+
+Sebagian besar proses produksi dikerjakan dari rumah masing-masing sesuai dengan pembagian tugas dan keterampilan yang dimiliki. Pola kerja ini memberikan fleksibilitas bagi para pekerja untuk tetap menjalankan aktivitas sehari-hari sekaligus memperoleh tambahan pendapatan.` },
+    { type: "subheading", text: "Pemasaran" },
+    { type: "list", items: ["Pameran tingkat kota dan nasional (Jakarta, Bandung, Pontianak)", "Pameran di kawasan Malioboro", "Bandara Yogyakarta", "Jaringan komunitas dan relasi", "Pemesanan langsung melalui WhatsApp"] },
+    { type: "subheading", text: "Harapan Pengembangan" },
+    { type: "paragraph", text: "Pemilik berharap Ciplak Cipluk dapat terus berkembang sebagai usaha kreatif yang mampu menjangkau pasar yang lebih luas melalui pemasaran digital. Selain itu, regenerasi pelaku usaha menjadi perhatian utama agar semangat berkarya dan pemberdayaan masyarakat tetap berlanjut." },
+  ],
+},
   },
   {
     name: "Sosrowijayan Wetan",
@@ -93,8 +144,29 @@ Selain kerajinan tangan, Sitisewu juga menjaga kelestarian kesenian musik tradis
 Letaknya yang strategis, hanya sekitar dua ratus meter dari Stasiun Tugu dan berbatasan langsung dengan Jalan Malioboro, membuat Sosrowijayan Wetan mengalami transformasi besar pada paruh akhir abad ke-20. Dari kampung permukiman biasa, wilayah ini perlahan berubah menjadi kampung turis di Yogyakarta bersamaan dengan daerah Prawirotaman, seiring menjamurnya losmen dan penginapan murah yang menyasar wisatawan backpacker domestik maupun asing.
 
 Perpaduan budaya lokal dan internasional pun tumbuh secara organik di sini. Banyak warga yang bekerja di sektor jasa pariwisata, mulai dari pengelola penginapan, pemandu wisata, hingga usaha laundry dan toko cendera mata. Julukan "Kampung Internasional" yang disematkan pada kampung ini menjadikan Sosrowijayan Wetan sebagai bukti nyata bagaimana sebuah kampung tempat abdi dalem keraton tinggal dapat bertransformasi menjadi kampung kosmopolitan tanpa kehilangan akar sejarahnya.`,
-    uniqueness: "Dijuluki 'Kampung Internasional', pusat losmen dan penginapan backpacker paling dekat dengan Stasiun Tugu.",
-    attractions: ["Kawasan penginapan backpacker", "Dekat Stasiun Tugu & Malioboro"],
+    uniqueness: "Julukan Kampung Internasional merupakan identitas yang terbentuk dari sejarah panjang perkembangan pariwisata di kawasan Sosrowijayan. Sejak era backpacker tourism, kampung ini telah menjadi salah satu tujuan favorit wisatawan asing yang mencari akomodasi dengan harga yang terjangkau sekaligus ingin merasakan suasana kampung yang hangat dan autentik. Hingga saat ini, wisatawan dari berbagai negara masih menjadikan Sosrowijayan Wetan sebagai tempat menginap sebelum melanjutkan perjalanan ke berbagai destinasi di Yogyakarta maupun daerah wisata lain. Kehadiran wisatawan mancanegara memberikan warna tersendiri bagi kehidupan masyarakat, menciptakan ruang perjumpaan budaya yang berlangsung secara alami melalui aktivitas sehari-hari.",
+    attractions: ["Penginapan dan Hospitality", "Wisata Berbasis Komunitas"],
+    extraSection: {
+  category: "Potensi Wisata",
+  subject: "Kampung Internasional",
+  blocks: [
+    { type: "paragraph", text: `Julukan Kampung Internasional merupakan identitas yang terbentuk dari sejarah panjang perkembangan pariwisata di kawasan Sosrowijayan. Sejak era backpacker tourism, kampung ini telah menjadi salah satu tujuan favorit wisatawan asing yang mencari akomodasi dengan harga yang terjangkau sekaligus ingin merasakan suasana kampung yang hangat dan autentik.
+
+Hingga saat ini, wisatawan dari berbagai negara masih menjadikan Sosrowijayan Wetan sebagai tempat menginap sebelum melanjutkan perjalanan ke berbagai destinasi di Yogyakarta maupun daerah wisata lain.` },
+    { type: "subheading", text: "Penginapan dan Hospitality" },
+    { type: "paragraph", text: `Salah satu kekuatan utama Sosrowijayan Wetan adalah keberadaan berbagai jenis akomodasi yang dapat memenuhi kebutuhan wisatawan dengan beragam anggaran. Mulai dari homestay, guest house, hostel, hingga hotel berbintang dapat ditemukan di kawasan ini.
+
+Selain menyediakan tempat menginap, banyak pengelola penginapan yang turut memberikan informasi mengenai destinasi wisata, kuliner, transportasi, hingga budaya lokal kepada wisatawan.` },
+    { type: "subheading", text: "Wisata Berbasis Komunitas" },
+    { type: "paragraph", text: `Di balik ramainya aktivitas pariwisata, Sosrowijayan Wetan tetap mempertahankan kehidupan kampung yang hangat. Berbagai kegiatan masyarakat, pelaku UMKM, komunitas, hingga penyelenggaraan acara budaya menjadi bagian dari pengalaman wisata yang dapat dinikmati pengunjung.
+
+Konsep ini menghadirkan pengalaman yang berbeda bagi wisatawan. Mereka tidak hanya datang untuk menginap, mereka dapat mengenal kehidupan masyarakat lokal, berinteraksi secara langsung dengan warga, serta merasakan suasana kampung yang menjadi bagian dari identitas Yogyakarta.` },
+    { type: "subheading", text: "Peran dalam Pariwisata Malioboro" },
+    { type: "paragraph", text: `Keberadaan Sosrowijayan Wetan memiliki peran penting dalam mendukung ekosistem pariwisata Malioboro. Kampung ini menjadi titik awal bagi banyak wisatawan untuk menjelajahi Kota Yogyakarta. Dari kawasan ini, wisatawan dapat dengan mudah mengakses Malioboro, Keraton Yogyakarta, Taman Sari, Benteng Vredeburg, hingga berbagai destinasi budaya lainnya.
+
+Selain itu, perkembangan berbagai usaha jasa wisata seperti biro perjalanan, penyewaan kendaraan, restoran, dan toko souvenir turut memberikan kontribusi terhadap pertumbuhan ekonomi masyarakat setempat.` },
+  ],
+},
   },
   {
     name: "Sosrowijayan Kulon",
@@ -107,6 +179,31 @@ Nama Pasar Kembang sendiri telah lama identik dengan bagian dari sejarah sosial 
 Dari masa ke masa, Sosrowijayan Kulon tetap menjadi bagian tak terpisahkan dari denyut kawasan Malioboro-Tugu, hidup berdampingan dengan saudaranya di sisi timur namun mempertahankan identitas lokalnya yang khas. Kini kampung ini turut menjadi bagian dari jejaring Kampung Wisata Sosromenduran, melengkapi keragaman potensi ketujuh kampung dalam kelurahan yang sama.`,
     uniqueness: "Rumah bagi kawasan Pasar Kembang (Sarkem), salah satu kawasan bersejarah paling dikenal di seputar Stasiun Tugu.",
     attractions: ["Kawasan Pasar Kembang", "Denyut kawasan Malioboro-Tugu"],
+    extraSection: {
+  category: "Aktivitas Budaya",
+  subject: "Sarkem Festival",
+  blocks: [
+    { type: "paragraph", text: `Sarkem Festival merupakan agenda budaya tahunan yang diselenggarakan di Kalurahan Sosromenduran sebagai media promosi pariwisata sekaligus pelestarian budaya lokal. Festival ini melibatkan seluruh kampung di Kalurahan Sosromenduran dan menjadi ruang kolaborasi antara masyarakat, pemerintah, pelaku UMKM, komunitas seni, serta berbagai pihak lainnya.
+
+Nama "Sarkem" dipilih karena telah lama dikenal sebagai sebutan kawasan Pasar Kembang. Melalui festival ini, nama yang sebelumnya sering dikaitkan dengan stigma negatif dihadirkan kembali sebagai identitas baru yang merepresentasikan kekayaan budaya, sejarah, serta semangat kebersamaan masyarakat.
+
+Pelaksanaan festival biasanya bertepatan dengan tradisi Ruwahan (Nyadran), yaitu tradisi masyarakat Jawa menjelang bulan Ramadan sebagai ungkapan rasa syukur, doa bersama, dan penghormatan kepada leluhur.` },
+    { type: "subheading", text: "Festival Pembuatan Apem" },
+    { type: "paragraph", text: "Rangkaian kegiatan diawali dengan pembuatan apem secara gotong royong oleh masyarakat dari berbagai kampung di Sosromenduran. Tradisi ini menjadi simbol rasa syukur sekaligus persiapan menyambut datangnya bulan suci Ramadan." },
+    { type: "subheading", text: "Kirab Gunungan Apem" },
+    { type: "paragraph", text: "Apem yang telah dibuat kemudian disusun menjadi sebuah gunungan dan diarak mengelilingi kawasan Sosromenduran. Kirab diikuti oleh masyarakat, kelompok seni, bregada, serta berbagai komunitas yang mengenakan pakaian adat." },
+    { type: "subheading", text: "Kenduri Ruwahan" },
+    { type: "paragraph", text: "Setelah kirab, masyarakat melaksanakan Kenduri Ruwahan, yaitu doa bersama sebagai bentuk ungkapan syukur sekaligus memohon keberkahan menjelang bulan Ramadan." },
+    { type: "subheading", text: "Pawai Budaya" },
+    { type: "paragraph", text: "Setiap kampung menampilkan identitas dan potensi budayanya melalui pawai budaya. Berbagai kostum tradisional, kesenian daerah, serta kreativitas masyarakat ditampilkan dalam arak-arakan yang menjadi salah satu atraksi utama festival." },
+    { type: "subheading", text: "Bazar UMKM" },
+    { type: "paragraph", text: "Festival juga menghadirkan bazar UMKM yang diikuti oleh pelaku usaha lokal. Berbagai produk kuliner, kerajinan tangan, hingga suvenir khas Sosromenduran dipamerkan dan dipasarkan kepada pengunjung." },
+    { type: "subheading", text: "Panggung Hiburan" },
+    { type: "paragraph", text: "Pada malam hari, rangkaian festival ditutup dengan pertunjukan hiburan yang menampilkan band lokal, musik keroncong, tari tradisional, pertunjukan seni, hingga hiburan modern yang melibatkan event organizer." },
+    { type: "subheading", text: "Makna Budaya dan Nilai Wisata" },
+    { type: "paragraph", text: `Lebih dari sekadar festival tahunan, Sarkem Festival merupakan ruang untuk memperkenalkan identitas Sosromenduran kepada masyarakat luas. Bagi wisatawan, festival ini menghadirkan pengalaman yang autentik karena mereka dapat menyaksikan langsung tradisi masyarakat, menikmati kuliner khas, berinteraksi dengan pelaku UMKM, serta mengenal kehidupan kampung yang berada di balik ramainya kawasan Malioboro.` },
+  ],
+},
   },
   {
     name: "Sosrodipuran",
@@ -119,19 +216,65 @@ Bangunan bersejarah ini memasuki babak baru ketika kompleksnya difungsikan sebag
 Dari sisi kehidupan warga, Sosrodipuran tumbuh dengan karakter yang berbeda dari kampung sekitarnya. Wilayah ini dikenal dengan potensi kerajinan kulit serta seni tari tradisional yang terus dilestarikan oleh generasi ke generasi, mencerminkan bagaimana warisan estetika keraton yang dahulu melekat pada sang putri kini menjelma menjadi denyut kesenian rakyat sehari-hari.`,
     uniqueness: "Bekas kediaman putri keraton yang kini menjadi lokasi SD Netral, dengan pendapa cagar budaya yang masih terjaga.",
     attractions: ["Pendapa cagar budaya Sosrodipuran", "Kerajinan kulit", "Seni tari tradisional"],
+    extraSection: {
+  category: "Aktivitas Budaya",
+  subject: "Omah Seni Djayaningratan",
+  blocks: [
+    { type: "paragraph", text: `Omah Seni Djayaningratan merupakan ruang seni dan budaya yang berada di Kampung Sosrodipuran. Tempat ini hadir sebagai wadah bagi berbagai aktivitas kesenian, mulai dari pameran seni rupa, pertunjukan musik, tari, teater, pembacaan puisi, hingga kegiatan edukasi budaya yang melibatkan masyarakat. Sebelum pandemi COVID-19, Omah Seni Djayaningratan dikenal sebagai ruang kreatif yang aktif menyelenggarakan berbagai kegiatan seni secara rutin dan menjadi tempat berkumpulnya seniman dari berbagai daerah di Indonesia.
+
+Pandemi COVID-19 menyebabkan seluruh aktivitas seni terhenti sehingga bangunan sempat tidak terawat dan mengalami beberapa kerusakan, seperti atap yang bocor. Namun, semangat gotong royong masyarakat dan pengurus mendorong bangkitnya kembali Omah Seni Djayaningratan sebagai ruang berkesenian. Upaya revitalisasi tersebut tidak hanya bertujuan menghidupkan kembali aktivitas seni, tetapi juga memperkuat peran kampung sebagai destinasi wisata budaya berbasis komunitas.
+
+Selain menjadi tempat pertunjukan, Omah Seni Djayaningratan juga memiliki ruang pamer yang dapat dimanfaatkan oleh seniman, komunitas, maupun kurator untuk menyelenggarakan pameran seni. Ke depan, ruang ini direncanakan berkembang menjadi art gallery yang dapat dikunjungi setiap hari sehingga wisatawan dapat menikmati karya seni tanpa harus menunggu penyelenggaraan acara tertentu.` },
+    { type: "subheading", text: "Panggung Gumregah" },
+    { type: "paragraph", text: `Panggung Gumregah merupakan salah satu program unggulan Omah Seni Djayaningratan yang lahir sebagai simbol kebangkitan aktivitas seni setelah masa pandemi. Kata "Gumregah" dalam bahasa Jawa memiliki makna bangkit kembali atau kembali bersemangat. Nama tersebut dipilih sebagai representasi semangat masyarakat dan para seniman untuk menghidupkan kembali ruang seni yang sempat vakum akibat pandemi.
+
+Melalui Panggung Gumregah, Omah Seni Djayaningratan berupaya menghadirkan ruang ekspresi yang terbuka bagi masyarakat sekaligus menghidupkan kembali denyut kehidupan seni di Kampung Sosrodipuran.` },
+    { type: "subheading", text: "Rangkaian Acara" },
+    { type: "paragraph", text: `Pelaksanaan perdana Panggung Gumregah di tahun 2026 ini mengangkat tema Pentas Seni Dangdut. Tema ini dipilih karena mampu menjangkau berbagai kalangan masyarakat dan menciptakan suasana yang lebih inklusif sehingga menarik lebih banyak pengunjung.
+
+Selain pertunjukan musik dangdut, kegiatan ini juga dirangkaikan dengan pembukaan pameran seni yang menampilkan karya para seniman dari berbagai daerah. Perpaduan antara seni pertunjukan dan seni rupa menjadikan Panggung Gumregah sebagai ruang apresiasi budaya yang dapat dinikmati oleh masyarakat maupun wisatawan.` },
+    { type: "subheading", text: "Aktivitas Seni dan Budaya" },
+    { type: "paragraph", text: `Omah Seni Djayaningratan tidak hanya menyelenggarakan Panggung Gumregah, tetapi juga menjadi tempat berlangsungnya berbagai kegiatan seni dan budaya. Sebelum pandemi, ruang ini secara rutin menjadi lokasi penyelenggaraan pameran seni rupa, pertunjukan teater, pembacaan puisi, pertunjukan tari, musik, hingga kegiatan budaya yang melibatkan komunitas lokal, termasuk kelompok Kembang Adas yang menampilkan pembacaan naskah dan pertunjukan budaya di pendopo.
+
+Dalam penyelenggaraan pameran, Omah Seni Djayaningratan juga menjalin kolaborasi dengan seniman dari berbagai daerah, seperti Aceh, Bandung, Purwokerto, Surabaya, Jakarta, dan Yogyakarta. Kolaborasi tersebut menunjukkan bahwa ruang seni ini tidak hanya menjadi milik masyarakat lokal, tetapi juga menjadi titik temu bagi komunitas seni dari berbagai wilayah di Indonesia.` },
+    { type: "subheading", text: "Keterlibatan Masyarakat" },
+    { type: "paragraph", text: `Keberhasilan Omah Seni Djayaningratan tidak terlepas dari peran aktif masyarakat. Warga dilibatkan sebagai pelaku pertunjukan tari, musik, puisi, maupun teater. Selain itu, kegiatan seni juga memberikan ruang bagi pelaku usaha untuk memasarkan produk mereka kepada pengunjung.
+
+Pengelola menerapkan konsep yang terbuka terhadap berbagai gagasan. Masyarakat maupun komunitas seni dipersilakan mengajukan ide penyelenggaraan kegiatan, dan pengelola siap memberikan dukungan agar ruang seni ini terus berkembang sebagai pusat aktivitas budaya berbasis komunitas.` },
+    { type: "subheading", text: "Rencana Pengembangan" },
+    { type: "paragraph", text: `Ke depan, Omah Seni Djayaningratan memiliki berbagai rencana pengembangan untuk memperkuat posisinya sebagai destinasi wisata budaya. Salah satu program yang sedang dipersiapkan adalah pembukaan art gallery permanen yang dapat dikunjungi setiap hari. Galeri tersebut nantinya akan menampilkan berbagai karya seni rupa, kerajinan tangan, hingga produk berbahan daur ulang hasil karya masyarakat.
+
+Selain itu, pengelola juga berencana membuka berbagai kelas edukasi, seperti kelas seni rupa, kelas tari, kegiatan membatik, serta pameran tematik yang bekerja sama dengan berbagai institusi budaya, termasuk Museum Rempah. Melalui berbagai program tersebut, Omah Seni Djayaningratan diharapkan menjadi ruang belajar sekaligus destinasi wisata edukatif bagi masyarakat dan wisatawan.` },
+  ],
+},
   },
   {
-    name: "Sosromenduran",
-    cover: coverSosromenduran,
-    short: "Kampung asal nama kelurahan, dulu pemukiman abdi dalem, kini sentra produksi kaos dan souvenir Malioboro.",
-    history: `Sebagai kampung yang namanya diabadikan menjadi nama kelurahan, Sosromenduran memiliki posisi istimewa. Kampung ini berdiri di seputar dalem KRT Sosromenduro, yang merupakan seorang abdi dalem keraton, dengan lokasi yang berdampingan dengan Sosrodipuran dan berada di selatan Sosrowijayan. Pola penamaan semacam ini lazim ditemui di kampung-kampung njaban beteng atau luar benteng Keraton Yogyakarta, tempat nama-nama abdi dalem diabadikan menjadi identitas wilayah tempat tinggal mereka.
+  name: "Sosromenduran",
+  cover: coverSosromenduran,
+  short: "Kampung asal nama kelurahan, dulu pemukiman abdi dalem, kini sentra produksi kaos dan souvenir Malioboro.",
+  history: `Sebagai kampung yang namanya diabadikan menjadi nama kelurahan, Sosromenduran memiliki posisi istimewa. Kampung ini berdiri di seputar dalem KRT Sosromenduro, yang merupakan seorang abdi dalem keraton, dengan lokasi yang berdampingan dengan Sosrodipuran dan berada di selatan Sosrowijayan. Pola penamaan semacam ini lazim ditemui di kampung-kampung njaban beteng atau luar benteng Keraton Yogyakarta, tempat nama-nama abdi dalem diabadikan menjadi identitas wilayah tempat tinggal mereka.
 
 Berbeda dari kampung tetangganya yang lebih identik dengan kediaman putra-putri raja, Sosromenduran mencerminkan jejak abdi dalem yang mengabdi langsung kepada keraton. Letaknya yang berdekatan dengan Malioboro dan Stasiun Tugu perlahan mengubah wajah kampung ini dari pemukiman abdi dalem menjadi kawasan ekonomi kreatif, terutama sejak dikenal sebagai sentra produksi kaos oblong dan aneka souvenir yang menopang aktivitas wisata di kawasan Malioboro.
 
 Kini, sebagai representasi dari seluruh kelurahan, Sosromenduran terus berinovasi menjadi kampung wisata kota yang aktif, tak hanya menjadi penyangga kawasan Malioboro, bahkan kampung tersebut tampil sebagai etalase budaya urban Yogyakarta, lengkap dengan berbagai kegiatan warga mulai dari karnaval pelajar hingga penyuluhan kesehatan lansia yang mempertahankan semangat gotong royong ala abdi dalem pendahulunya.`,
-    uniqueness: "Sentra produksi kaos oblong dan souvenir yang menopang aktivitas wisata Malioboro.",
-    attractions: ["Sentra produksi kaos & souvenir", "Etalase budaya urban Yogyakarta"],
+  uniqueness: "Sentra produksi kaos oblong dan souvenir yang menopang aktivitas wisata Malioboro.",
+  attractions: ["Sentra produksi kaos & souvenir", "Etalase budaya urban Yogyakarta"],
+  extraSection: {
+    category: "Potensi Wisata",
+    subject: "Taman Yuwono",
+    blocks: [
+      { type: "paragraph", text: "Selain dikenal sebagai kawasan penunjang wisata Malioboro, Sosromenduran memiliki potensi wisata berbasis sejarah dan budaya yang masih terus berkembang. Keberadaan bangunan-bangunan berarsitektur kolonial, jejak industri batik, serta kisah para tokoh yang pernah tinggal di kawasan ini menjadi daya tarik tersendiri bagi wisatawan yang ingin mengenal sisi lain Yogyakarta." },
+      { type: "subheading", text: "Taman Yuwono" },
+      { type: "paragraph", text: `Taman Yuwono merupakan salah satu kawasan bersejarah yang terletak di Jalan Dagen, Kampung Sosromenduran, hanya sekitar lima menit berjalan kaki dari Jalan Malioboro. Dahulu kawasan ini dikenal sebagai Taman Joewana, sebuah kompleks permukiman yang berkembang pada masa kolonial Belanda. Hingga kini, kawasan tersebut masih mempertahankan tata ruang permukiman lama yang dikelilingi rumah-rumah bergaya kolonial atau Indis (gaya arsitektur hasil perpaduan antara arsitektur Eropa, terutama Belanda, dengan budaya dan iklim Nusantara), sehingga menghadirkan suasana yang berbeda dibandingkan hiruk pikuk kawasan Malioboro di sekitarnya.
+
+Saat ini, sebagian bangunan di kawasan Taman Yuwono telah dimanfaatkan sebagai penginapan heritage. Meski mengalami penyesuaian fungsi, karakter bangunan dan suasana kawasan tetap dipertahankan sehingga pengunjung dapat merasakan pengalaman menginap di lingkungan yang sarat akan nilai sejarah.` },
+      { type: "subheading", text: "Wisata Sejarah" },
+      { type: "paragraph", text: `Taman Yuwono menjadi salah satu destinasi wisata sejarah yang menawarkan pengalaman berbeda bagi wisatawan. Kawasan ini menggambarkan bagaimana Sosromenduran berkembang sebagai permukiman masyarakat dari berbagai latar belakang budaya pada masa kolonial. Keberadaan rumah-rumah tua, tata ruang permukiman yang masih asli, serta kisah perkembangan industri batik menjadikan kawasan ini menarik untuk dijelajahi melalui wisata berjalan kaki (heritage walking tour).
+
+Bagi wisatawan yang ingin mengenal Yogyakarta lebih dalam, Taman Yuwono memberikan sudut pandang bahwa pesona kota ini tidak hanya terletak pada Malioboro dan Keraton, tetapi juga pada kampung-kampung yang menyimpan cerita sejarah dan kehidupan masyarakatnya.` },
+    ],
   },
+},
   {
     name: "Pajeksan",
     cover: coverPajeksan,
@@ -143,6 +286,34 @@ Seiring waktu, komposisi penduduk Pajeksan berkembang menjadi lebih majemuk, dih
 Warisan multietnis ini terus hidup hingga kini. Jika dahulu Pajeksan dikenal luas lewat julukan 'Pajeksan Kacangan' sebagai sentra kacang bawang, kini denyut akulturasi itu tetap terjaga melalui kreativitas pembuatan Barongsai dan Naga yang menjadi andalan warga. Bersanding dengan alunan musik keroncong, Pajeksan pun menjadi bukti nyata bagaimana sebuah kampung abdi dalem bertransformasi menjadi ruang perjumpaan lintas budaya yang khas Yogyakarta.`,
     uniqueness: "Kampung multietnis dengan warisan kuliner Tionghoa serta kerajinan Barongsai dan Naga.",
     attractions: ["Kuliner khas Tionghoa-Jawa", "Kerajinan Barongsai & Naga", "Musik keroncong"],
+    extraSection: {
+  category: "Profil Usaha",
+  subject: "The Photo Art",
+  blocks: [
+    { type: "table", rows: [
+      { label: "Nama Usaha", value: "The Photo Art" },
+      { label: "Lokasi", value: "Kampung Pajeksan, Kalurahan Sosromenduran, kawasan Malioboro, Kota Yogyakarta" },
+    ] },
+    { type: "subheading", text: "Jenis Layanan" },
+    { type: "list", items: ["Penyewaan pakaian adat Jawa", "Jasa fotografi di kawasan Malioboro", "Penyewaan properti pendukung untuk sesi foto"] },
+    { type: "subheading", text: "Jenis Pakaian yang Ditawarkan" },
+    { type: "list", items: ["Pakaian adat standar pria dan wanita", "Busana kemben atau kamisol", "Busana adat premium, termasuk busana pengantin (manten)"] },
+    { type: "subheading", text: "Rincian Tarif Sewa" },
+    { type: "table", rows: [
+      { label: "Pakaian adat standar (pria/wanita)", value: "Rp25.000/setel" },
+      { label: "Busana kemben atau kamisol", value: "Rp50.000/setel" },
+      { label: "Busana premium atau pengantin (manten)", value: "Rp100.000/setel" },
+      { label: "Selendang (opsional)", value: "Rp5.000" },
+      { label: "Layanan rias (make-up)", value: "Biaya terpisah" },
+    ] },
+    { type: "subheading", text: "Fasilitas yang Termasuk" },
+    { type: "list", items: ["Keris", "Payung tradisional", "Aksesori pendukung lainnya tanpa biaya tambahan"] },
+    { type: "subheading", text: "Jam Operasional" },
+    { type: "list", items: ["Setiap hari pukul 08.00–17.00 WIB", "Reservasi khusus dapat dilakukan mulai pukul 06.00 WIB dengan sistem pemesanan terlebih dahulu"] },
+    { type: "subheading", text: "Wisata Berbasis Pengalaman Budaya" },
+    { type: "paragraph", text: "Keberadaan jasa foto baju adat di Kampung Pajeksan memberikan warna baru bagi pariwisata di kawasan Malioboro. Wisatawan tidak hanya berkunjung untuk menikmati suasana jalanan atau berbelanja, tetapi juga dapat merasakan pengalaman mengenakan busana adat Jawa dan mengabadikan momen di berbagai sudut ikonik Malioboro." },
+  ],
+},
   },
   {
     name: "Jogonegaran",
@@ -153,6 +324,20 @@ Warisan multietnis ini terus hidup hingga kini. Jika dahulu Pajeksan dikenal lua
 Dari warisan sejarah sebagai dalem bangsawan dan bekas kampus, Jogonegaran hari ini menemukan identitas barunya sebagai kampung yang mengembangkan konsep kampung sayur dan kuliner olahan berbasis pemberdayaan masyarakat. Transformasi ini menunjukkan bagaimana kampung yang dulunya sarat dengan aktivitas keraton dan akademik kini merangkul potensi ekonomi kerakyatan sebagai wajah barunya di tengah kawasan wisata Malioboro.`,
     uniqueness: "Bekas dalem putri keraton yang kini dikenal sebagai kampung sayur dan kuliner olahan berbasis warga.",
     attractions: ["Kampung sayur", "Kuliner olahan warga"],
+    extraSection: {
+  category: "Potensi Wisata",
+  subject: "Kampung Sayur dan Kuliner",
+  blocks: [
+    { type: "subheading", text: "Wisata Kuliner" },
+    { type: "paragraph", text: `Salah satu potensi utama Kampung Jogonegaran adalah wisata kuliner yang dikembangkan oleh masyarakat setempat. Berbagai makanan dan minuman hasil olahan warga menjadi bagian dari identitas kampung sekaligus mendukung kegiatan ekonomi kreatif.
+
+Keberadaan kuliner lokal menjadi pelengkap bagi wisatawan yang berkunjung ke kawasan Malioboro. Dengan lokasi yang mudah dijangkau, Jogonegaran memiliki peluang besar untuk menjadi destinasi singgah bagi wisatawan yang ingin menikmati hidangan khas sekaligus mengenal aktivitas masyarakat setempat.` },
+    { type: "subheading", text: "Kampung Sayur" },
+    { type: "paragraph", text: `Potensi unggulan lainnya adalah Kampung Sayur, yaitu kawasan yang memanfaatkan lahan terbatas di lingkungan permukiman untuk membudidayakan berbagai jenis tanaman sayuran. Konsep ini menunjukkan bahwa ruang sempit di perkotaan tetap dapat dimanfaatkan secara produktif sekaligus memperindah lingkungan.
+
+Kampung Sayur memiliki nilai edukatif yang tinggi karena dapat dijadikan media pembelajaran mengenai pertanian perkotaan, ketahanan pangan keluarga, dan pelestarian lingkungan.` },
+  ],
+},
   },
 ];
 
@@ -169,6 +354,7 @@ export const kampungs: Kampung[] = KAMPUNG_SEEDS.map((k, i) => ({
   location: { lat: -7.7925 + i * 0.001, lng: 110.365 + i * 0.001 }, // TODO: ganti koordinat asli
   umkm: [], // TODO: hubungkan slug UMKM yang berlokasi di kampung ini
   culinary: [], // TODO: hubungkan slug kuliner yang berlokasi di kampung ini
+  extraSection: k.extraSection,
 }));
 
 export const umkms: UMKM[] = [
