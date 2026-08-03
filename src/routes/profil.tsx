@@ -191,7 +191,7 @@ function ProfilPage() {
         Bantu kami tingkatkan pelayanan dengan mengisi Survei Kepuasan Masyarakat (SKM).
       </p>
       <Button asChild variant="outline" className="mt-4 rounded-full">
-        <a href="https://linktr.ee/DRopSSosro?utm_source=qr_code" target="_blank" rel="noreferrer">
+        <a href="https://docs.google.com/forms/d/1SNi5kl4udEaIuBJyiai69MlXTi_kX6JUrWlqCJqRYqg/viewform?edit_requested=true" target="_blank" rel="noreferrer">
           Isi SKM <ExternalLink className="ml-2 h-4 w-4" />
         </a>
       </Button>

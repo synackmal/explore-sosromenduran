@@ -30,13 +30,12 @@ function KampungIndex() {
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <img src={k.cover} alt={k.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <Badge className="absolute top-3 left-3 bg-white/90 text-foreground">Heritage</Badge>
                 </div>
                 <CardContent className="p-5">
                   <div className="font-display font-bold text-xl">{k.name}</div>
                   <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{k.short}</p>
                   <div className="mt-4 flex items-center justify-between text-sm">
-                    <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3 w-3" /> Sosromenduran</span>
+                    <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3 w-3" /> {k.name}</span>
                     <span className="text-primary font-semibold flex items-center gap-1">Selengkapnya <ArrowRight className="h-3 w-3" /></span>
                   </div>
                 </CardContent>
