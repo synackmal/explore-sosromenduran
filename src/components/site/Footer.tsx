@@ -11,9 +11,17 @@ export function Footer() {
             Discover the Hidden Gems of Sosromenduran
           </p>
           <div className="mt-4 flex gap-3">
-            <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="#"><Instagram className="h-4 w-4" /></a>
-            <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="#"><Facebook className="h-4 w-4" /></a>
-            <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="#"><Youtube className="h-4 w-4" /></a>
+            <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="https://www.instagram.com/kelurahan_sosromenduran/" target="_blank" rel="noopener noreferrer">
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="https://www.facebook.com/share/1BfLvRWU4G/
+" target="_blank" rel="noopener noreferrer">
+              <Facebook className="h-4 w-4" />
+            </a>
+            <a className="p-2 rounded-full bg-white/10 hover:bg-white/20" href="https://youtube.com/@kelurahansosromenduran
+" target="_blank" rel="noopener noreferrer">
+              <Youtube className="h-4 w-4" />
+            </a>
           </div>
         </div>
         <div>

@@ -20,8 +20,8 @@ export const Route = createFileRoute("/profil-tim")({
 // TODO: ganti dengan foto asli (import gambar, tambahkan field `photo`, render <img> menggantikan div gradient)
 const TEAM = [
   { name: "Muhammad Akmal Fauzan", role: "Web Developer", photo: fotoAkmal },
-  { name: "Fadhil Alfian Priambda", role: "Web Developer", photo: fotoFadhil },
-  { name: "Najwa Millati", role: "Mapping", photo: fotoNajwa },
+  { name: "Fadhil Alfian Priambada", role: "Web Developer", photo: fotoFadhil },
+  { name: "Najwa Millati Azka", role: "Mapper", photo: fotoNajwa },
   { name: "Bunga Sumbodro", role: "Content Writer", photo: fotoBunga },
   { name: "Lutfia Diana", role: "Content Writer", photo: fotoLutfia },
 ];

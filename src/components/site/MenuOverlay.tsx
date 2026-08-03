@@ -9,7 +9,6 @@ const MENU_ITEMS = [
   { to: "/wisata", label: "Wisata" },
   { to: "/events", label: "Event" },
   { to: "/gallery", label: "Galeri" },
-  { to: "/funfact", label: "Funfact" },
 ];
 
 const SECONDARY_LINKS = [
