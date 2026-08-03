@@ -4,7 +4,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import type { RichBlock } from "@/data/mock";
 import { SARKEM_FEST } from "@/data/events";
-import heroEvent from "@/assets/hero/hero-event.jpg";
+import heroEvent from "@/assets/hero/hero-eventt.jpeg";
 
 export const Route = createFileRoute("/events")({
   head: () => ({

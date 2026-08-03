@@ -17,15 +17,10 @@ export const Route = createFileRoute("/profil-tim")({
   component: ProfilTimPage,
 });
 
-// TODO: ganti dengan foto asli (import gambar, tambahkan field `photo`, render <img> menggantikan div gradient)
-const TEAM = [
-  { name: "Muhammad Akmal Fauzan", role: "Web Developer", photo: fotoAkmal },
-  { name: "Fadhil Alfian Priambada", role: "Web Developer", photo: fotoFadhil },
-  { name: "Najwa Millati Azka", role: "Mapper", photo: fotoNajwa },
-  { name: "Bunga Sumbodro", role: "Content Writer", photo: fotoBunga },
-  { name: "Lutfia Diana", role: "Content Writer", photo: fotoLutfia },
-];
+import { TEAM_INFO } from "@/data/profil";
 
+const TEAM_PHOTOS = [fotoAkmal, fotoFadhil, fotoNajwa, fotoBunga, fotoLutfia];
+const TEAM = TEAM_INFO.map((t, i) => ({ ...t, photo: TEAM_PHOTOS[i] }));
 const SLICE_STYLES = [
   "from-primary via-primary to-accent",
   "from-accent via-accent to-tertiary",

@@ -19,8 +19,8 @@ import bungaFlower from "@/assets/decor/daun-bunga.svg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bergandeng Tengen — Wisata Kelurahan Sosromenduran Yogyakarta" },
-      { name: "description", content: "Portal wisata resmi Kelurahan Sosromenduran, Yogyakarta. Jelajahi kampung heritage, UMKM, kuliner khas, dan event budaya." },
+      { title: "Bergandeng Tengen — Wisata Kalurahan Sosromenduran Yogyakarta" },
+      { name: "description", content: "Portal wisata resmi Kalurahan Sosromenduran, Yogyakarta. Jelajahi kampung heritage, UMKM, kuliner khas, dan event budaya." },
       { property: "og:title", content: "Bergandeng Tengen — Sosromenduran" },
       { property: "og:description", content: "Discover the Hidden Gems of Sosromenduran." },
     ],
@@ -103,10 +103,10 @@ function Home() {
             Denyut Malioboro,<br /> jiwa <span className="text-gradient-warm">kampung Jawa</span>.
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
-            Sosromenduran adalah kelurahan bersejarah di jantung Yogyakarta yang berdampingan langsung dengan Malioboro. Terdiri dari 7 kampung, kelurahan ini merangkai kisah tentang warga, budaya, kuliner, dan kreativitas UMKM yang tumbuh turun temurun.
+            Sosromenduran adalah Kalurahan bersejarah di jantung Yogyakarta yang berdampingan langsung dengan Malioboro. Terdiri dari 7 kampung, Kalurahan ini merangkai kisah tentang warga, budaya, kuliner, dan kreativitas UMKM yang tumbuh turun temurun.
           </p>
           <div className="mt-6 flex gap-3">
-            <Button asChild variant="secondary" className="rounded-full"><Link to="/profil">Tentang Sosromenduran</Link></Button>
+            <Button asChild variant="secondary" className="rounded-full"><Link to="/profil">Tentang Kalurahan</Link></Button>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
