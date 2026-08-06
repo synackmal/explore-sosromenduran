@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Quote, Store, Utensils } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { CountUpNumber } from "@/components/site/CountUpNumber";
@@ -19,8 +19,8 @@ import bungaFlower from "@/assets/decor/daun-bunga.svg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bergandeng Tengen — Wisata Kelurahan Sosromenduran Yogyakarta" },
-      { name: "description", content: "Portal wisata resmi Kelurahan Sosromenduran, Yogyakarta. Jelajahi kampung heritage, UMKM, kuliner khas, dan event budaya." },
+      { title: "Bergandeng Tengen — Wisata Kalurahan Sosromenduran Yogyakarta" },
+      { name: "description", content: "Portal wisata resmi Kalurahan Sosromenduran, Yogyakarta. Jelajahi kampung heritage, UMKM, kuliner khas, dan event budaya." },
       { property: "og:title", content: "Bergandeng Tengen — Sosromenduran" },
       { property: "og:description", content: "Discover the Hidden Gems of Sosromenduran." },
     ],
@@ -30,8 +30,8 @@ export const Route = createFileRoute("/")({
 
 // Gabungan featured UMKM + Kuliner buat landing page
 const featuredEconomy = [
-  ...umkms.slice(0, 2).map((u) => ({ slug: u.slug, name: u.name, category: u.category, photo: u.photo, desc: u.description })),
-  ...culinaries.slice(0, 1).map((c) => ({ slug: c.slug, name: c.name, category: "Kuliner", photo: c.photo, desc: c.description })),
+  ...umkms.slice(0, 3).map((u) => ({ slug: u.slug, name: u.name, category: u.category, desc: u.description })),
+  ...culinaries.slice(0, 3).map((c) => ({ slug: c.slug, name: c.name, category: "Kuliner", desc: c.description })),
 ];
 
 const BEAUTY_ITEMS = [
@@ -98,15 +98,15 @@ function Home() {
       {/* Welcome + Stats */}
       <section className="mx-auto max-w-7xl px-4 md:px-8 py-20 grid gap-10 md:grid-cols-2 items-center">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">Selamat Datang</div>
+          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">Sugeng Rawuh</div>
           <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight">
             Denyut Malioboro,<br /> jiwa <span className="text-gradient-warm">kampung Jawa</span>.
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
-            Sosromenduran adalah kelurahan bersejarah di jantung Yogyakarta yang berdampingan langsung dengan Malioboro. Terdiri dari 7 kampung, kelurahan ini merangkai kisah tentang warga, budaya, kuliner, dan kreativitas UMKM yang tumbuh turun temurun.
+            Sosromenduran adalah Kalurahan bersejarah di jantung Yogyakarta yang berdampingan langsung dengan Malioboro. Terdiri dari 7 kampung, Kalurahan ini merangkai kisah tentang warga, budaya, kuliner, dan kreativitas UMKM yang tumbuh turun temurun.
           </p>
           <div className="mt-6 flex gap-3">
-            <Button asChild variant="secondary" className="rounded-full"><Link to="/profil">Tentang Sosromenduran</Link></Button>
+            <Button asChild variant="secondary" className="rounded-full"><Link to="/profil">Tentang Kalurahan</Link></Button>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -197,26 +197,33 @@ function Home() {
       </section>
 
       {/* Featured UMKM & Kuliner */}
-      <section className="mx-auto max-w-7xl px-4 md:px-8 py-16">
-        <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
-          <SectionHeader eyebrow="Ekonomi Warga" title="UMKM & Kuliner Pilihan" subtitle="Kerajinan, jasa, dan cita rasa khas warga Sosromenduran." />
-          <Button asChild variant="ghost"><Link to="/umkm">Lihat semua <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {featuredEconomy.map((item) => (
-            <Card key={item.slug} className="overflow-hidden group border-border/60 hover:shadow-xl transition-all">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={item.photo} alt={item.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+<section className="mx-auto max-w-7xl px-4 md:px-8 py-16">
+  <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
+    <SectionHeader eyebrow="Ekonomi Warga" title="UMKM & Kuliner Pilihan" subtitle="Kerajinan, jasa, dan cita rasa khas warga Sosromenduran." />
+    <Button asChild variant="ghost"><Link to="/umkm">Lihat semua <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+  </div>
+  <div className="grid gap-6 md:grid-cols-3">
+    {featuredEconomy.map((item) => {
+      const Icon = item.category === "Kuliner" ? Utensils : Store;
+      return (
+        <Card key={item.slug} className="border-border/60 transition-shadow hover:shadow-lg">
+          <CardContent className="p-5 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                <Icon className="h-5 w-5" />
               </div>
-              <CardContent className="p-5">
-                <Badge variant="secondary">{item.category}</Badge>
-                <div className="font-display font-bold text-lg mt-2">{item.name}</div>
-                <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.desc}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
+              <div>
+                <Badge variant="secondary" className="mb-1">{item.category}</Badge>
+                <div className="font-display font-bold leading-tight">{item.name}</div>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground line-clamp-2">{item.desc}</p>
+          </CardContent>
+        </Card>
+      );
+    })}
+  </div>
+</section>
 
       {/* Explore CTA */}
 {/* Explore CTA */}
@@ -237,21 +244,14 @@ function Home() {
   <div className="relative">
     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Siap Menjelajah?</p>
     <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
-      Jelajahi Sosromenduran dengan cara Anda sendiri.
+      Jelajahi Sosromenduran melalui Dokumentasi.
     </h2>
     <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
       <Link
-        to="/map"
+        to="/gallery"
         className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
       >
-        Explore Peta
-        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-      </Link>
-      <Link
-        to="/kampung"
-        className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
-      >
-        Explore Kampung
+        Explore Gallery
         <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
       </Link>
     </div>

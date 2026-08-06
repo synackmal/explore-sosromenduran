@@ -123,11 +123,24 @@ function KampungDetail() {
           <Card className="border-border/60">
             <CardContent className="p-5">
               <div className="text-sm font-semibold flex items-center gap-2 mb-3"><MapPin className="h-4 w-4 text-primary" /> Lokasi</div>
-              <div className="aspect-square rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 grid place-items-center batik-pattern">
-                <MapPin className="h-8 w-8 text-primary" />
-              </div>
+              <div className="aspect-square overflow-hidden rounded-xl border border-border/60">
+  <iframe
+    title={`Peta lokasi ${k.name}`}
+    src={`https://www.openstreetmap.org/export/embed.html?bbox=${k.location.lng - 0.004}%2C${k.location.lat - 0.003}%2C${k.location.lng + 0.004}%2C${k.location.lat + 0.003}&layer=mapnik&marker=${k.location.lat}%2C${k.location.lng}`}
+    className="h-full w-full border-0"
+    loading="lazy"
+  />
+</div>
               <div className="text-xs text-muted-foreground mt-3">Lat: {k.location.lat.toFixed(4)}, Lng: {k.location.lng.toFixed(4)}</div>
-              <Button asChild variant="secondary" className="w-full mt-4"><Link to="/map">Buka di Peta</Link></Button>
+              <Button asChild variant="secondary" className="w-full mt-4">
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${k.location.lat},${k.location.lng}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Buka di Google Maps
+                </a>
+              </Button>
             </CardContent>
           </Card>
         </aside>

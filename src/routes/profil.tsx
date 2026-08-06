@@ -20,35 +20,7 @@ export const Route = createFileRoute("/profil")({
   component: ProfilPage,
 });
 
-const PIMPINAN = [
-  { name: "Hendy Setiawan, S.I.P", role: "Lurah Sosromenduran" },
-  { name: "Elia Sundari, S.ST., M.M.", role: "Sekretaris Lurah" },
-];
-
-const MISI = [
-  "Menciptakan pelayanan yang profesional",
-  "Meningkatkan pemberdayaan dan kesejahteraan masyarakat",
-  "Meningkatkan sumber daya aparatur dan pembangunan partisipatif",
-  "Meningkatkan potensi dan peluang usaha",
-  "Meningkatkan ketentraman dan ketertiban",
-];
-
-const DATA_WILAYAH = [
-  { label: "Nama Kalurahan", value: "Sosromenduran" },
-  { label: "Tahun Pembentukan", value: "1981" },
-  { label: "Kode Wilayah", value: "34.71.05.1001" },
-  { label: "Kode Pos", value: "55271" },
-  { label: "Kemantren", value: "Gedongtengen" },
-  { label: "Kabupaten/Kota", value: "Kota Yogyakarta" },
-  { label: "Provinsi", value: "Daerah Istimewa Yogyakarta" },
-];
-
-const BATAS_WILAYAH = [
-  { arah: "Utara", desc: "Berbatasan dengan Kelurahan Bumijo dan Kelurahan Gowongan Kec. Jetis, mengikuti Jl. Suryonegaran, Jl. Bumijo, Jl. Gowongan Kidul." },
-  { arah: "Selatan", desc: "Berbatasan dengan Kelurahan Ngupasan Kec. Gondomanan, mengikuti Jl. Pajeksan." },
-  { arah: "Barat", desc: "Berbatasan dengan Kelurahan Pringgokusuman dan Kelurahan Bumijo Kec. Jetis, mengikuti Jl. Jogonegaran, Jl. Yos Sudarso, Jl. Jlagran, dan Jl. Tentara Pelajar." },
-  { arah: "Timur", desc: "Berbatasan dengan Kelurahan Gowongan Kec. Jetis dan Kelurahan Suryatmajan Kec. Danurejan, mengikuti Jl. P Mangkubumi dan Jl. Malioboro." },
-];
+import { PIMPINAN, VISI, MISI, DATA_WILAYAH, BATAS_WILAYAH } from "@/data/profil";
 
 function ProfilPage() {
   return (
@@ -84,10 +56,8 @@ function ProfilPage() {
             Visi
           </h2>
           <p className="mt-5 font-display text-2xl italic leading-snug text-foreground md:text-3xl">
-            "Terwujudnya Kalurahan Pariwisata sebagai kawasan wisata lokal maupun mancanegara untuk
-            menopang pertumbuhan ekonomi dengan pemukiman yang bersih, sehat, tertib, serta berkawasan
-            lingkungan."
-          </p>
+  "{VISI}"
+</p>
         </section>
 
         <hr className="my-14 border-border/60" />
@@ -191,7 +161,7 @@ function ProfilPage() {
         Bantu kami tingkatkan pelayanan dengan mengisi Survei Kepuasan Masyarakat (SKM).
       </p>
       <Button asChild variant="outline" className="mt-4 rounded-full">
-        <a href="https://linktr.ee/DRopSSosro?utm_source=qr_code" target="_blank" rel="noreferrer">
+        <a href="https://docs.google.com/forms/d/1SNi5kl4udEaIuBJyiai69MlXTi_kX6JUrWlqCJqRYqg/viewform?edit_requested=true" target="_blank" rel="noreferrer">
           Isi SKM <ExternalLink className="ml-2 h-4 w-4" />
         </a>
       </Button>

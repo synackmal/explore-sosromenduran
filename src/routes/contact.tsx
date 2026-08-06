@@ -24,8 +24,9 @@ const SUGGESTIONS = [
   "Wisata apa saja di Sosromenduran?",
   "Rekomendasi kuliner khas?",
   "Rekomendasi oleh-oleh?",
-  "Dimana parkir terdekat?",
-  "Event budaya terdekat?",
+  "Kapan SARKEM FEST diadakan?",
+  "Apa visi-misi Kalurahan Sosromenduran?",
+  "Siapa saja tim KKN-PPM UGM Bergandeng Tengen?",
 ];
 
 function ChatPage() {
