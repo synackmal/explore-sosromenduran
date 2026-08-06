@@ -1,6 +1,6 @@
 import { kampungs, umkms, culinaries } from "@/data/mock";
 import { SARKEM_FEST } from "@/data/events";
-import { PIMPINAN, VISI, MISI, DATA_WILAYAH, BATAS_WILAYAH, TEAM_INFO } from "@/data/profile";
+import { PIMPINAN, VISI, MISI, DATA_WILAYAH, BATAS_WILAYAH, TEAM_INFO } from "@/data/profil";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
