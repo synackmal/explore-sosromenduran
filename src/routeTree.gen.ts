@@ -21,6 +21,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KampungIndexRouteImport } from './routes/kampung.index'
 import { Route as KampungSlugRouteImport } from './routes/kampung.$slug'
+import { Route as ArtikelSlugRouteImport } from './routes/artikel.$slug'
 
 const WisataRoute = WisataRouteImport.update({
   id: '/wisata',
@@ -82,6 +83,11 @@ const KampungSlugRoute = KampungSlugRouteImport.update({
   path: '/kampung/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArtikelSlugRoute = ArtikelSlugRouteImport.update({
+  id: '/artikel/$slug',
+  path: '/artikel/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
   '/wisata': typeof WisataRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
 }
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
   '/wisata': typeof WisataRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung': typeof KampungIndexRoute
 }
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/profil-tim': typeof ProfilTimRoute
   '/umkm': typeof UmkmRoute
   '/wisata': typeof WisataRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
   '/kampung/$slug': typeof KampungSlugRoute
   '/kampung/': typeof KampungIndexRoute
 }
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/profil-tim'
     | '/umkm'
     | '/wisata'
+    | '/artikel/$slug'
     | '/kampung/$slug'
     | '/kampung/'
   fileRoutesByTo: FileRoutesByTo
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/profil-tim'
     | '/umkm'
     | '/wisata'
+    | '/artikel/$slug'
     | '/kampung/$slug'
     | '/kampung'
   id:
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/profil-tim'
     | '/umkm'
     | '/wisata'
+    | '/artikel/$slug'
     | '/kampung/$slug'
     | '/kampung/'
   fileRoutesById: FileRoutesById
@@ -182,6 +194,7 @@ export interface RootRouteChildren {
   ProfilTimRoute: typeof ProfilTimRoute
   UmkmRoute: typeof UmkmRoute
   WisataRoute: typeof WisataRoute
+  ArtikelSlugRoute: typeof ArtikelSlugRoute
   KampungSlugRoute: typeof KampungSlugRoute
   KampungIndexRoute: typeof KampungIndexRoute
 }
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KampungSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/artikel/$slug': {
+      id: '/artikel/$slug'
+      path: '/artikel/$slug'
+      fullPath: '/artikel/$slug'
+      preLoaderRoute: typeof ArtikelSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -286,6 +306,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfilTimRoute: ProfilTimRoute,
   UmkmRoute: UmkmRoute,
   WisataRoute: WisataRoute,
+  ArtikelSlugRoute: ArtikelSlugRoute,
   KampungSlugRoute: KampungSlugRoute,
   KampungIndexRoute: KampungIndexRoute,
 }

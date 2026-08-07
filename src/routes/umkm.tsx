@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search, MapPin, Clock, Phone, Utensils, Shirt, Sparkles, Store, GraduationCap, Smartphone, Flower2, BookOpen } from "lucide-react";import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { umkms, culinaries } from "@/data/mock";
 import heroUMKM from "@/assets/hero/hero-umkm.jpg";
+import { ImageIcon } from "lucide-react";
+import { ARTICLES } from "@/data/articles";
 
 export const Route = createFileRoute("/umkm")({
   head: () => ({
@@ -87,6 +89,29 @@ const filtered = entries.filter(
         subtitle="Kerajinan, jasa, dan cita rasa khas dari warga 7 kampung Sosromenduran."
         image={heroUMKM}
       />
+
+      <section className="mx-auto max-w-7xl px-4 md:px-8 pt-10">
+  <h2 className="font-display text-xl font-bold">Artikel Kuliner</h2>
+  <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {ARTICLES.map((article) => (
+      <Link
+        key={article.slug}
+        to="/artikel/$slug"
+        params={{ slug: article.slug }}
+        className="group overflow-hidden rounded-2xl border border-border/60 transition-shadow hover:shadow-lg"
+      >
+        {/* TODO: ganti dengan foto cover artikel asli */}
+        <div className="aspect-[4/3] overflow-hidden">
+  <img src={article.cover} alt={article.title} className="h-full w-full object-cover" />
+</div>
+        <div className="p-4">
+          <p className="font-display font-bold leading-snug group-hover:text-primary">{article.title}</p>
+          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{article.subtitle}</p>
+        </div>
+      </Link>
+    ))}
+  </div>
+</section>
 
       <section className="mx-auto max-w-7xl px-4 md:px-8 pt-10 pb-6">
         <div className="relative mb-5 max-w-md">
