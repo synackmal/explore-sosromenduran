@@ -3,9 +3,13 @@ import { useMemo, useState } from "react";
 import { X } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
-import kampungImg from "@/assets/kampung-1.jpg";
-import culinaryImg from "@/assets/culinary-1.jpg";
-import umkmImg from "@/assets/umkm-1.jpg";
+import foto1 from "@/assets/gallery/foto-1.jpg";
+import foto2 from "@/assets/gallery/foto-2.jpg";
+import foto3 from "@/assets/gallery/foto-3.jpg";
+import foto4 from "@/assets/gallery/foto-4.jpg";
+import foto5 from "@/assets/gallery/foto-5.jpg";
+import foto6 from "@/assets/gallery/foto-6.jpg";
+
 import heroGaleri from "@/assets/hero/hero-galeri.jpg";
 
 export const Route = createFileRoute("/gallery")({
@@ -19,18 +23,15 @@ export const Route = createFileRoute("/gallery")({
 });
 
 // TODO: ganti dengan foto dokumentasi asli, caption, dan kategori sesungguhnya
-type GalleryItem = { src: string; caption: string; category: string };
+type GalleryItem = { src: string};
 
 const GALLERY_ITEMS: GalleryItem[] = [
-  { src: kampungImg, caption: "Kirab Budaya Sosromenduran", category: "Kegiatan Kalurahan" },
-  { src: culinaryImg, caption: "Kunjungan ke sentra kuliner Dagen", category: "Dokumentasi Tim" },
-  { src: umkmImg, caption: "Workshop batik bersama warga", category: "Kegiatan PKK" },
-  { src: kampungImg, caption: "Gotong royong kampung Gowongan", category: "Kegiatan Kalurahan" },
-  { src: culinaryImg, caption: "Festival kuliner Malioboro", category: "Kegiatan Kalurahan" },
-  { src: umkmImg, caption: "Pendataan UMKM warga", category: "Dokumentasi Tim" },
-  { src: kampungImg, caption: "Posyandu balita PKK", category: "Kegiatan PKK" },
-  { src: culinaryImg, caption: "Latihan gamelan warga", category: "Kegiatan Kalurahan" },
-  { src: umkmImg, caption: "Sosialisasi program KKN", category: "Dokumentasi Tim" },
+  { src: foto1},
+  { src: foto2},
+  { src: foto3},
+  { src: foto4},
+  { src: foto5},
+  { src: foto6},
 ];
 
 function Gallery() {
