@@ -5,10 +5,10 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import heroGaleri from "@/assets/hero/hero-galeri.jpg";
 import foto1 from "@/assets/gallery/foto-1.jpg";
-import foto2 from "@/assets/gallery/foto-2.jpg";
-import foto3 from "@/assets/gallery/foto-3.jpg";
-import foto4 from "@/assets/gallery/foto-4.jpg";
-import foto5 from "@/assets/gallery/foto-5.jpg";
+import foto2 from "@/assets/gallery/foto-2.JPG";
+import foto3 from "@/assets/gallery/foto-3.JPG";
+import foto4 from "@/assets/gallery/foto-4.JPG";
+import foto5 from "@/assets/gallery/foto-5.JPG";
 import foto6 from "@/assets/gallery/foto-6.jpg";
 
 export const Route = createFileRoute("/gallery")({
