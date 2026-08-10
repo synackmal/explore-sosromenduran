@@ -12,8 +12,9 @@ import heroImg from "@/assets/hero-sosromenduran.jpg";
 import batikCircle1 from "@/assets/decor/batik-circle-1.png";
 import batikCircle2 from "@/assets/decor/batik-circle-2.png";
 import wordmark from "@/assets/wordmark-bergandeng-tengen.svg";
-import kampungImg from "@/assets/kampung-1.jpg";
-import culinaryImg from "@/assets/culinary-1.jpg";
+import foto3 from "@/assets/gallery/foto-3.JPG";
+import foto4 from "@/assets/gallery/foto-4.JPG";
+import foto5 from "@/assets/gallery/foto-5.JPG";
 import bungaFlower from "@/assets/decor/daun-bunga.svg";
 
 export const Route = createFileRoute("/")({
@@ -35,11 +36,11 @@ const featuredEconomy = [
 ];
 
 const BEAUTY_ITEMS = [
-  { type: "image" as const, src: kampungImg, caption: "Gang-gang kampung yang hidup" },
+  { type: "image" as const, src: foto3, caption: "Becak-becak berdekatan" },
   { type: "quote" as const, dark: true, text: '"Sosromenduran itu Jogja dalam versi paling jujur — ramai, ramah, dan penuh cerita."' },
-  { type: "image" as const, src: culinaryImg, caption: "Cita rasa yang tak lekang waktu" },
+  { type: "image" as const, src: foto4, caption: "Jalan Malioboro: Penuh Cerita" },
   { type: "quote" as const, dark: false, text: '"Setiap gang punya mural, setiap warung punya cerita turun-temurun."' },
-  { type: "image" as const, src: kampungImg, caption: "Warna-warni mural kampung" },
+  { type: "image" as const, src: foto5, caption: "Stasiun: Selamat Datang dan Sampai Jumpa" },
   { type: "quote" as const, dark: true, text: '"Di sini, sejarah dan kehidupan sehari-hari berjalan berdampingan."' },
 ];
 
