@@ -130,40 +130,40 @@ function Home() {
       </section>
 
       {/* Keindahan Wilayah — full-bleed horizontal auto-scroll */}
-<section className="overflow-hidden bg-primary/5 py-16">
-  <div className="mx-auto max-w-7xl px-4 md:px-8">
-    <SectionHeader eyebrow="Rasakan Suasananya" title="Keindahan Sosromenduran" center />
-  </div>
+      <section className="overflow-hidden bg-primary/5 py-16">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <SectionHeader eyebrow="Rasakan Suasananya" title="Keindahan Sosromenduran" center />
+        </div>
 
-  <div className="relative mt-4">
-    <motion.div
-      className="flex w-max gap-0"
-      animate={{ x: ["0%", "-50%"] }}
-      transition={{ duration: 64, ease: "linear", repeat: Infinity }}
-    >
-      {[...BEAUTY_ITEMS, ...BEAUTY_ITEMS].map((item, i) =>
-       item.type === "image" ? (
-  <div
-    key={i}
-    className="relative h-[420px] w-[300px] shrink-0 overflow-hidden  md:h-[460px] md:w-[340px]"
-  >
-    <img src={item.src} alt={item.caption} className="h-full w-full object-cover" />
-  </div>
-) : (
-          <div
-            key={i}
-            className={`flex h-[420px] w-[300px] shrink-0 flex-col justify-center p-7 md:h-[460px] md:w-[340px] md:p-8 ${
-              item.dark ? "bg-primary text-cream" : "bg-tertiary/15 text-foreground"
-            }`}
+        <div className="relative mt-4">
+          <motion.div
+            className="flex w-max gap-0"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 64, ease: "linear", repeat: Infinity }}
           >
-            <Quote className={`h-8 w-8 ${item.dark ? "text-gold" : "text-primary"}`} />
-            <p className="mt-4 font-display text-lg italic leading-snug md:text-xl">{item.text}</p>
-          </div>
-        )
-      )}
-    </motion.div>
-  </div>
-</section>
+            {[...BEAUTY_ITEMS, ...BEAUTY_ITEMS].map((item, i) =>
+              item.type === "image" ? (
+                <div
+                  key={i}
+                  className="relative h-[420px] w-[300px] shrink-0 overflow-hidden md:h-[460px] md:w-[340px]"
+                >
+                  <img src={item.src} alt={item.caption} className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <div
+                  key={i}
+                  className={`flex h-[420px] w-[300px] shrink-0 flex-col justify-center p-7 md:h-[460px] md:w-[340px] md:p-8 ${
+                    item.dark ? "bg-primary text-cream" : "bg-tertiary/15 text-foreground"
+                  }`}
+                >
+                  <Quote className={`h-8 w-8 ${item.dark ? "text-gold" : "text-primary"}`} />
+                  <p className="mt-4 font-display text-lg italic leading-snug md:text-xl">{item.text}</p>
+                </div>
+              )
+            )}
+          </motion.div>
+        </div>
+      </section>
 
       {/* Featured Kampungs */}
       <section className="mx-auto max-w-7xl px-4 md:px-8 py-16">
@@ -198,67 +198,89 @@ function Home() {
       </section>
 
       {/* Featured UMKM & Kuliner */}
-<section className="mx-auto max-w-7xl px-4 md:px-8 py-16">
-  <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
-    <SectionHeader eyebrow="Ekonomi Warga" title="UMKM & Kuliner Pilihan" subtitle="Kerajinan, jasa, dan cita rasa khas warga Sosromenduran." />
-    <Button asChild variant="ghost"><Link to="/umkm">Lihat semua <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-  </div>
-  <div className="grid gap-6 md:grid-cols-3">
-    {featuredEconomy.map((item) => {
-      const Icon = item.category === "Kuliner" ? Utensils : Store;
-      return (
-        <Card key={item.slug} className="border-border/60 transition-shadow hover:shadow-lg">
-          <CardContent className="p-5 space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" />
-              </div>
-              <div>
-                <Badge variant="secondary" className="mb-1">{item.category}</Badge>
-                <div className="font-display font-bold leading-tight">{item.name}</div>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground line-clamp-2">{item.desc}</p>
-          </CardContent>
-        </Card>
-      );
-    })}
-  </div>
-</section>
+      <section className="mx-auto max-w-7xl px-4 md:px-8 py-16">
+        <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
+          <SectionHeader eyebrow="Ekonomi Warga" title="UMKM & Kuliner Pilihan" subtitle="Kerajinan, jasa, dan cita rasa khas warga Sosromenduran." />
+          <Button asChild variant="ghost"><Link to="/umkm">Lihat semua <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {featuredEconomy.map((item) => {
+            const Icon = item.category === "Kuliner" ? Utensils : Store;
+            return (
+              <Card key={item.slug} className="border-border/60 transition-shadow hover:shadow-lg">
+                <CardContent className="p-5 space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <Badge variant="secondary" className="mb-1">{item.category}</Badge>
+                      <div className="font-display font-bold leading-tight">{item.name}</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-2">{item.desc}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
 
       {/* Explore CTA */}
-{/* Explore CTA */}
-<section className="relative mx-auto max-w-4xl overflow-hidden px-4 py-24 text-center md:px-8">
-<img
-  src={bungaFlower}
-  alt=""
-  aria-hidden="true"
-  className="pointer-events-none absolute left-1 top-6 h-60 w-60 opacity-40 motion-safe:animate-[spinSlow_50s_linear_infinite] md:left-1 md:h-60 md:w-60"
-/>
-<img
-  src={bungaFlower}
-  alt=""
-  aria-hidden="true"
-  className="pointer-events-none absolute right-5 bottom-6 h-16 w-16 rotate-12 opacity-30 motion-safe:animate-[spinSlowReverse_60s_linear_infinite] md:right-10 md:h-50 md:w-50"
-/>
+      <section className="relative mx-auto max-w-4xl overflow-hidden px-4 py-24 text-center md:px-8">
+        <img
+          src={bungaFlower}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1 top-6 h-60 w-60 opacity-40 motion-safe:animate-[spinSlow_50s_linear_infinite] md:left-1 md:h-60 md:w-60"
+        />
+        <img
+          src={bungaFlower}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute right-5 bottom-6 h-16 w-16 rotate-12 opacity-30 motion-safe:animate-[spinSlowReverse_60s_linear_infinite] md:right-10 md:h-50 md:w-50"
+        />
 
-  <div className="relative">
-    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Siap Menjelajah?</p>
-    <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
-      Jelajahi Sosromenduran melalui Dokumentasi.
-    </h2>
-    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-      <Link
-        to="/gallery"
-        className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
-      >
-        Explore Gallery
-        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-      </Link>
-    </div>
-  </div>
-</section>
+        <div className="relative">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Siap Menjelajah?</p>
+          <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
+            Jelajahi Sosromenduran melalui Dokumentasi.
+          </h2>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
+            <Link
+              to="/gallery"
+              className="group flex items-center gap-2 border-b-2 border-primary pb-1 font-display text-xl font-bold text-primary transition-colors hover:text-accent md:text-2xl"
+            >
+              Explore Gallery
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Sanggar Tari */}
+      <section className="mx-auto max-w-5xl px-4 pb-24 md:px-8">
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Budaya & Kesenian</p>
+          <h2 className="mt-3 font-display text-3xl font-bold md:text-4xl">
+            Sanggar Tari Paseduluran Sosromenduran
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+            Menjaga warisan seni tari tradisional lewat generasi muda Sosromenduran.
+          </p>
+        </div>
+        <div className="mt-8 overflow-hidden rounded-3xl border border-border/60 shadow-lg">
+          <div className="aspect-video w-full">
+            <iframe
+              className="h-full w-full"
+              src="https://www.youtube.com/embed/0eWZi5okVeU"
+              title="Sanggar Tari Paseduluran Sosromenduran"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
     </SiteLayout>
-
   );
 }
